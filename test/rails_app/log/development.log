@@ -1,0 +1,209 @@
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-26 16:52:48) [GET]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-26 16:52:48) [GET]
+
+ActionController::RoutingError (No route matches "/javascripts/prototype.js" with {:method=>:get}):
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/rack/request_handler.rb:92:in `process_request'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:418:in `start_request_handler'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:358:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/utils.rb:184:in `safe_fork'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:354:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:163:in `start'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendering rescues/layout (not_found)
+
+ActionController::RoutingError (No route matches "/javascripts/effects.js" with {:method=>:get}):
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/rack/request_handler.rb:92:in `process_request'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:418:in `start_request_handler'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:358:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/utils.rb:184:in `safe_fork'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:354:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:163:in `start'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendering rescues/layout (not_found)
+
+
+Processing PagesController#index (for 127.0.0.1 at 2010-04-26 16:54:14) [GET]
+
+ActionController::UnknownAction (No action responded to index. Actions: ):
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/rack/request_handler.rb:92:in `process_request'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:418:in `start_request_handler'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:358:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/utils.rb:184:in `safe_fork'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:354:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:163:in `start'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendering rescues/layout (not_found)
+
+
+Processing PagesController#index (for 127.0.0.1 at 2010-04-26 16:54:36) [GET]
+
+ActionController::UnknownAction (No action responded to index. Actions: ):
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/rack/request_handler.rb:92:in `process_request'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:418:in `start_request_handler'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:358:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/utils.rb:184:in `safe_fork'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:354:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:163:in `start'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendering rescues/layout (not_found)
+
+
+Processing PagesController#index (for 127.0.0.1 at 2010-04-26 16:59:08) [GET]
+
+ActionController::UnknownAction (No action responded to index. Actions: ):
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/rack/request_handler.rb:92:in `process_request'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:418:in `start_request_handler'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:358:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/utils.rb:184:in `safe_fork'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:354:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:163:in `start'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendering rescues/layout (not_found)
+
+
+Processing PagesController#index (for 127.0.0.1 at 2010-04-26 17:10:58) [GET]
+  [4;36;1mPage Load (0.0ms)[0m   [0;1mSQLite3::SQLException: no such table: pages: SELECT * FROM "pages" [0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: pages: SELECT * FROM "pages" ):
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/rack/request_handler.rb:92:in `process_request'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:418:in `start_request_handler'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:358:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/utils.rb:184:in `safe_fork'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:354:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:163:in `start'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendered rescues/_trace (190.6ms)
+Rendered rescues/_request_and_response (2.1ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PagesController#index (for 127.0.0.1 at 2010-04-26 17:17:25) [GET]
+  [4;36;1mPage Load (0.0ms)[0m   [0;1mSQLite3::SQLException: no such table: pages: SELECT * FROM "pages" [0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: pages: SELECT * FROM "pages" ):
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/rack/request_handler.rb:92:in `process_request'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:418:in `start_request_handler'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:358:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/utils.rb:184:in `safe_fork'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:354:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:163:in `start'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  /Users/sistemasinteractivos/.rvm/gems/ruby-1.8.7-p249/gems/passenger-2.2.11/lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendered rescues/_trace (190.8ms)
+Rendered rescues/_request_and_response (1.4ms)
+Rendering rescues/layout (internal_server_error)
