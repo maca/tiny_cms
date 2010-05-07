@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Test</title>
+  <%= javascript_include_tag 'jquery-1.4.2.min' %>
+  <%= javascript_include_tag 'jquery.inspect' %>
+  <%= javascript_include_tag *%w(jquery.cookie jquery.hotkeys jquery.metadata jquery.tree jquery-tree-plugins/jquery.tree.contextmenu).map{ |j| "jquery-tree/#{j}" } %>
+  <%#= javascript_include_tag 'tree-test', 'qunit' %>
+  <%= javascript_include_tag 'jquery-ui-dialog' %>
+  <%= javascript_include_tag 'pages' %>
+  
+  <%= stylesheet_link_tag 'jquery-ui/jquery-ui-1.8.1.custom', 'apple/style' %>
+</head>
+
+<body>
+
+<%= yield %>
+
+</body>
+</html>

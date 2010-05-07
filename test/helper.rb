@@ -1,3 +1,5 @@
+require 'rubygems'
+
 $LOAD_PATH.unshift "#{ File.dirname __FILE__ }/../lib"
 $LOAD_PATH.unshift File.dirname(__FILE__)
 
@@ -13,6 +15,7 @@ require 'support/page_migration'
 Factory.define :page do |p|
   p.sequence(:title) { |i| "Node #{i}"}
   p.sequence(:permalink) { |i| "node_#{i}"}
+  p.is_page true
 end
 
 class Test::Unit::TestCase

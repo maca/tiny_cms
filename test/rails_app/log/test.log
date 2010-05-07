@@ -1,0 +1,408 @@
+
+
+Processing PagesController#edit (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+  Parameters: {"id"=>"980190963"}
+Rendering template within layouts/application
+Rendering pages/edit
+Completed in 7ms (View: 5, DB: 138) | 200 OK [http://test.host/pages/980190963/edit]
+
+
+Processing PagesController#edit (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+  Parameters: {"id"=>"980190963"}
+Rendering template within layouts/application
+Rendering pages/edit
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/pages/980190963/edit]
+
+
+Processing PagesController#edit (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+  Parameters: {"id"=>"980190963"}
+Rendering template within layouts/application
+Rendering pages/edit
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/pages/980190963/edit]
+
+
+Processing PagesController#index (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+Rendering template within layouts/application
+Rendering pages/index
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/pages]
+
+
+Processing PagesController#index (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+Rendering template within layouts/application
+Rendering pages/index
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/pages]
+
+
+Processing PagesController#index (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+Rendering template within layouts/application
+Rendering pages/index
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/pages]
+
+
+Processing PagesController#index to json (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+Completed in 3ms (View: 2, DB: 3) | 200 OK [http://test.host/pages.json]
+
+
+Processing PagesController#index to json (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+Completed in 3ms (View: 2, DB: 3) | 200 OK [http://test.host/pages.json]
+
+
+Processing PagesController#index to json (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+Completed in 3ms (View: 2, DB: 4) | 200 OK [http://test.host/pages.json]
+
+
+Processing PagesController#show (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+  Parameters: {"path"=>["node_100"]}
+
+
+Processing PagesController#show (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+  Parameters: {"path"=>["not_existing_path"]}
+
+
+Processing PagesController#show (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+  Parameters: {"id"=>"980190963"}
+Rendering template within layouts/application
+Rendering pages/show
+Completed in 4ms (View: 3, DB: 4) | 200 OK [http://test.host/pages/980190963]
+
+
+Processing PagesController#show (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+  Parameters: {"id"=>"980190963"}
+Rendering template within layouts/application
+Rendering pages/show
+Completed in 3ms (View: 3, DB: 1) | 200 OK [http://test.host/pages/980190963]
+
+
+Processing PagesController#show (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+  Parameters: {"id"=>"980190963"}
+Rendering template within layouts/application
+Rendering pages/show
+Completed in 3ms (View: 3, DB: 1) | 200 OK [http://test.host/pages/980190963]
+
+
+Processing PagesController#show (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+  Parameters: {"path"=>["node_105"]}
+Rendering template within layouts/application
+Rendering pages/show
+Completed in 4ms (View: 3, DB: 2) | 200 OK [http://test.host/node_105]
+
+
+Processing PagesController#show (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+  Parameters: {"path"=>["node_106"]}
+Rendering template within layouts/application
+Rendering pages/show
+Completed in 4ms (View: 3, DB: 1) | 200 OK [http://test.host/node_106]
+
+
+Processing PagesController#show (for 0.0.0.0 at 2010-04-29 15:38:55) [GET]
+  Parameters: {"path"=>["node_107"]}
+Rendering template within layouts/application
+Rendering pages/show
+Completed in 4ms (View: 3, DB: 1) | 200 OK [http://test.host/node_107]
+
+
+Processing PagesController#create to json (for 0.0.0.0 at 2010-04-29 15:38:55) [POST]
+  Parameters: {"page"=>{"title"=>nil, "parent_id"=>nil}}
+Completed in 3ms (View: 1, DB: 0) | 422 Unprocessable Entity [http://test.host/pages.json?page%5Bparent_id%5D=&page%5Btitle%5D=]
+
+
+Processing PagesController#create to json (for 0.0.0.0 at 2010-04-29 15:38:55) [POST]
+  Parameters: {"page"=>{"title"=>nil, "parent_id"=>nil}}
+Completed in 3ms (View: 1, DB: 0) | 422 Unprocessable Entity [http://test.host/pages.json?page%5Bparent_id%5D=&page%5Btitle%5D=]
+
+
+Processing PagesController#create to json (for 0.0.0.0 at 2010-04-29 15:38:55) [POST]
+  Parameters: {"page"=>{"title"=>nil, "parent_id"=>nil}}
+Completed in 3ms (View: 1, DB: 0) | 422 Unprocessable Entity [http://test.host/pages.json?page%5Bparent_id%5D=&page%5Btitle%5D=]
+
+
+Processing PagesController#create to json (for 0.0.0.0 at 2010-04-29 15:38:55) [POST]
+  Parameters: {"page"=>{"title"=>nil, "parent_id"=>nil}}
+Completed in 72ms (View: 1, DB: 0) | 422 Unprocessable Entity [http://test.host/pages.json?page%5Bparent_id%5D=&page%5Btitle%5D=]
+
+
+Processing PagesController#create to json (for 0.0.0.0 at 2010-04-29 15:38:55) [POST]
+  Parameters: {"page"=>{"title"=>nil, "parent_id"=>nil}}
+Completed in 3ms (View: 1, DB: 0) | 422 Unprocessable Entity [http://test.host/pages.json?page%5Bparent_id%5D=&page%5Btitle%5D=]
+
+
+Processing PagesController#create to json (for 0.0.0.0 at 2010-04-29 15:38:55) [POST]
+  Parameters: {"page"=>{"permalink"=>"node_108", "title"=>"Node 119", "is_page"=>true}}
+Completed in 3ms (View: 0, DB: 0) | 201 Created [http://test.host/pages.json?page%5Bis_page%5D=true&page%5Bpermalink%5D=node_108&page%5Btitle%5D=Node+119]
+
+
+Processing PagesController#create to json (for 0.0.0.0 at 2010-04-29 15:38:55) [POST]
+  Parameters: {"page"=>{"permalink"=>"node_109", "title"=>"Node 120", "is_page"=>true}}
+Completed in 3ms (View: 0, DB: 0) | 201 Created [http://test.host/pages.json?page%5Bis_page%5D=true&page%5Bpermalink%5D=node_109&page%5Btitle%5D=Node+120]
+
+
+Processing PagesController#create to json (for 0.0.0.0 at 2010-04-29 15:38:55) [POST]
+  Parameters: {"page"=>{"permalink"=>"node_110", "title"=>"Node 121", "is_page"=>true}}
+Completed in 3ms (View: 0, DB: 0) | 201 Created [http://test.host/pages.json?page%5Bis_page%5D=true&page%5Bpermalink%5D=node_110&page%5Btitle%5D=Node+121]
+
+
+Processing PagesController#create to json (for 0.0.0.0 at 2010-04-29 15:38:55) [POST]
+  Parameters: {"page"=>{"permalink"=>"node_111", "title"=>"Node 122", "is_page"=>true}}
+Completed in 3ms (View: 0, DB: 0) | 201 Created [http://test.host/pages.json?page%5Bis_page%5D=true&page%5Bpermalink%5D=node_111&page%5Btitle%5D=Node+122]
+
+
+Processing PagesController#create to json (for 0.0.0.0 at 2010-04-29 15:38:55) [POST]
+  Parameters: {"page"=>{"permalink"=>"node_112", "title"=>"Node 123", "is_page"=>true}}
+Completed in 3ms (View: 0, DB: 0) | 201 Created [http://test.host/pages.json?page%5Bis_page%5D=true&page%5Bpermalink%5D=node_112&page%5Btitle%5D=Node+123]
+
+
+Processing PagesController#update (for 0.0.0.0 at 2010-04-29 15:38:55) [PUT]
+  Parameters: {"id"=>"980190963", "page"=>{"title"=>nil}}
+Rendering template within layouts/application
+Rendering pages/edit
+Completed in 6ms (View: 3, DB: 1) | 200 OK [http://test.host/pages/980190963?page%5Btitle%5D=]
+
+
+Processing PagesController#update (for 0.0.0.0 at 2010-04-29 15:38:55) [PUT]
+  Parameters: {"id"=>"980190963", "page"=>{"title"=>nil}}
+Rendering template within layouts/application
+Rendering pages/edit
+Completed in 6ms (View: 3, DB: 1) | 200 OK [http://test.host/pages/980190963?page%5Btitle%5D=]
+
+
+Processing PagesController#update (for 0.0.0.0 at 2010-04-29 15:38:55) [PUT]
+  Parameters: {"id"=>"980190963", "page"=>{"title"=>nil}}
+Rendering template within layouts/application
+Rendering pages/edit
+Completed in 6ms (View: 3, DB: 1) | 200 OK [http://test.host/pages/980190963?page%5Btitle%5D=]
+
+
+Processing PagesController#update (for 0.0.0.0 at 2010-04-29 15:38:55) [PUT]
+  Parameters: {"id"=>"980190963", "page"=>{"title"=>"Changed title"}}
+Redirected to http://test.host/pages/980190963
+Completed in 4ms (DB: 1) | 302 Found [http://test.host/pages/980190963?page%5Btitle%5D=Changed+title]
+
+
+Processing PagesController#update (for 0.0.0.0 at 2010-04-29 15:38:55) [PUT]
+  Parameters: {"id"=>"980190963", "page"=>{"title"=>"Changed title"}}
+Redirected to http://test.host/pages/980190963
+Completed in 4ms (DB: 1) | 302 Found [http://test.host/pages/980190963?page%5Btitle%5D=Changed+title]
+
+
+Processing PagesController#update to json (for 0.0.0.0 at 2010-04-29 15:38:55) [PUT]
+  Parameters: {"id"=>"980190963", "page"=>{"title"=>nil}}
+Completed in 4ms (View: 1, DB: 1) | 422 Unprocessable Entity [http://test.host/pages/980190963.json?page%5Btitle%5D=]
+
+
+Processing PagesController#update to json (for 0.0.0.0 at 2010-04-29 15:38:55) [PUT]
+  Parameters: {"id"=>"980190963", "page"=>{"title"=>nil}}
+Completed in 4ms (View: 1, DB: 1) | 422 Unprocessable Entity [http://test.host/pages/980190963.json?page%5Btitle%5D=]
+
+
+Processing PagesController#update to json (for 0.0.0.0 at 2010-04-29 15:38:55) [PUT]
+  Parameters: {"id"=>"980190963", "page"=>{"title"=>nil}}
+Completed in 4ms (View: 1, DB: 1) | 422 Unprocessable Entity [http://test.host/pages/980190963.json?page%5Btitle%5D=]
+
+
+Processing PagesController#update to json (for 0.0.0.0 at 2010-04-29 15:38:55) [PUT]
+  Parameters: {"id"=>"980190963", "page"=>{"title"=>nil}}
+Completed in 4ms (View: 1, DB: 1) | 422 Unprocessable Entity [http://test.host/pages/980190963.json?page%5Btitle%5D=]
+
+
+Processing PagesController#update to json (for 0.0.0.0 at 2010-04-29 15:38:55) [PUT]
+  Parameters: {"id"=>"980190963", "page"=>{"title"=>"Changed title"}}
+Completed in 4ms (View: 0, DB: 1) | 200 OK [http://test.host/pages/980190963.json?page%5Btitle%5D=Changed+title]
+
+
+Processing PagesController#update to json (for 0.0.0.0 at 2010-04-29 15:38:55) [PUT]
+  Parameters: {"id"=>"980190963", "page"=>{"title"=>"Changed title"}}
+Completed in 4ms (View: 0, DB: 1) | 200 OK [http://test.host/pages/980190963.json?page%5Btitle%5D=Changed+title]
+
+
+Processing PagesController#update to json (for 0.0.0.0 at 2010-04-29 15:38:55) [PUT]
+  Parameters: {"id"=>"980190963", "page"=>{"title"=>"Changed title"}}
+Completed in 4ms (View: 0, DB: 1) | 200 OK [http://test.host/pages/980190963.json?page%5Btitle%5D=Changed+title]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2010-04-30 14:46:18) [GET]
+Rendering template within layouts/application
+Rendering pages/index
+Completed in 12ms (View: 10, DB: 0) | 200 OK [http://localhost/pages]
+
+
+Processing PagesController#index to json (for 127.0.0.1 at 2010-04-30 14:46:18) [GET]
+  Parameters: {"id"=>"0"}
+  [4;36;1mPage Load (0.0ms)[0m   [0;1mSQLite3::SQLException: no such table: pages: SELECT * FROM "pages" WHERE ("pages"."parent_id" IS NULL) ORDER BY position[0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: pages: SELECT * FROM "pages" WHERE ("pages"."parent_id" IS NULL)  ORDER BY position):
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (60.0ms)
+Rendered rescues/_request_and_response (1.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PagesController#index (for 127.0.0.1 at 2010-04-30 14:46:31) [GET]
+Rendering template within layouts/application
+Rendering pages/index
+Completed in 4ms (View: 3, DB: 0) | 200 OK [http://localhost/pages]
+
+
+Processing PagesController#index to json (for 127.0.0.1 at 2010-04-30 14:46:31) [GET]
+  Parameters: {"id"=>"0"}
+  [4;35;1mPage Load (0.0ms)[0m   [0mSQLite3::SQLException: no such table: pages: SELECT * FROM "pages" WHERE ("pages"."parent_id" IS NULL) ORDER BY position[0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: pages: SELECT * FROM "pages" WHERE ("pages"."parent_id" IS NULL)  ORDER BY position):
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (54.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PagesController#index (for 127.0.0.1 at 2010-04-30 15:13:32) [GET]
+Rendering template within layouts/application
+Rendering pages/index
+Completed in 4ms (View: 3, DB: 0) | 200 OK [http://localhost/pages]
+
+
+Processing PagesController#index to json (for 127.0.0.1 at 2010-04-30 15:13:32) [GET]
+  Parameters: {"id"=>"0"}
+  [4;36;1mPage Load (0.0ms)[0m   [0;1mSQLite3::SQLException: no such table: pages: SELECT * FROM "pages" WHERE ("pages"."parent_id" IS NULL) ORDER BY position[0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: pages: SELECT * FROM "pages" WHERE ("pages"."parent_id" IS NULL)  ORDER BY position):
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (108.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PagesController#index (for 127.0.0.1 at 2010-04-30 15:13:36) [GET]
+Rendering template within layouts/application
+Rendering pages/index
+Completed in 4ms (View: 3, DB: 0) | 200 OK [http://localhost/pages]
+
+
+Processing PagesController#index to json (for 127.0.0.1 at 2010-04-30 15:13:36) [GET]
+  Parameters: {"id"=>"0"}
+  [4;35;1mPage Load (0.0ms)[0m   [0mSQLite3::SQLException: no such table: pages: SELECT * FROM "pages" WHERE ("pages"."parent_id" IS NULL) ORDER BY position[0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: pages: SELECT * FROM "pages" WHERE ("pages"."parent_id" IS NULL)  ORDER BY position):
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (118.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PagesController#index (for 127.0.0.1 at 2010-04-30 15:14:15) [GET]
+Rendering template within layouts/application
+Rendering pages/index
+Completed in 4ms (View: 3, DB: 0) | 200 OK [http://localhost/pages]
+
+
+Processing PagesController#index to json (for 127.0.0.1 at 2010-04-30 15:14:15) [GET]
+  Parameters: {"id"=>"0"}
+  [4;36;1mPage Load (0.0ms)[0m   [0;1mSQLite3::SQLException: no such table: pages: SELECT * FROM "pages" WHERE ("pages"."parent_id" IS NULL) ORDER BY position[0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: pages: SELECT * FROM "pages" WHERE ("pages"."parent_id" IS NULL)  ORDER BY position):
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (55.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PagesController#index (for 127.0.0.1 at 2010-04-30 15:14:21) [GET]
+Rendering template within layouts/application
+Rendering pages/index
+Completed in 4ms (View: 3, DB: 0) | 200 OK [http://localhost/pages]
+
+
+Processing PagesController#index to json (for 127.0.0.1 at 2010-04-30 15:14:21) [GET]
+  Parameters: {"id"=>"0"}
+  [4;35;1mPage Load (0.0ms)[0m   [0mSQLite3::SQLException: no such table: pages: SELECT * FROM "pages" WHERE ("pages"."parent_id" IS NULL) ORDER BY position[0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: pages: SELECT * FROM "pages" WHERE ("pages"."parent_id" IS NULL)  ORDER BY position):
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (63.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PagesController#index (for 127.0.0.1 at 2010-04-30 15:14:32) [GET]
+Rendering template within layouts/application
+Rendering pages/index
+Completed in 4ms (View: 3, DB: 0) | 200 OK [http://localhost/pages]
+
+
+Processing PagesController#index to json (for 127.0.0.1 at 2010-04-30 15:14:32) [GET]
+  Parameters: {"id"=>"0"}
+  [4;36;1mPage Load (0.0ms)[0m   [0;1mSQLite3::SQLException: no such table: pages: SELECT * FROM "pages" WHERE ("pages"."parent_id" IS NULL) ORDER BY position[0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: pages: SELECT * FROM "pages" WHERE ("pages"."parent_id" IS NULL)  ORDER BY position):
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/sistemasinteractivos/.rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (116.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
