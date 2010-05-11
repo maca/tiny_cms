@@ -41,6 +41,16 @@
               }, 
               action  : function (NODE, TREE_OBJ) { 
                 TREE_OBJ.create({ data : 'Nueva sección', attributes : {rel : ''}}, TREE_OBJ.get_node(NODE[0])); 
+              }
+            },
+            
+            'edit-page' : {
+              label   : "Editar", 
+              icon    : "create-page",
+              visible : function (NODE, TREE_OBJ) { return true; },
+              
+              action  : function (NODE, TREE_OBJ) {
+                window.location="/pages/" + $(NODE[0]).attr('data-node-id') + "/edit";
               },
               separator_after : true
             },
@@ -183,9 +193,9 @@
         },
         
         onmove : function(node, ref, type, tree_obj){
-          var ref_node, children;
+          var ref_node, children, url, data;
           var child_ids = [];
-          
+
           switch(type)
           {
             case 'before':
@@ -197,16 +207,20 @@
             break;
           };
 
-          ref_node = tree_obj.get(ref_node, 'json', {outer_attrib : ['data-node-id']});
-          children = ref_node.children;
-          
-          for (i = 0; i < children.length; i++){
-            child_ids.push(children[i].attributes['data-node-id']);
-          };
-                    
+          if (ref_node == -1) {
+            children = tree_obj.children(-1);
+            url      = '/pages/reorder.json';
+            $.each(children, function(index, value){ child_ids.push($(value).attr('data-node-id')); });
+          } else {
+            ref_node = tree_obj.get(ref_node, 'json', {outer_attrib : ['data-node-id']});
+            children = ref_node.children;
+            url      = "/pages/" + ref_node.attributes['data-node-id'] + '.json';
+            $.each(children, function(index, value){ child_ids.push(value.attributes['data-node-id']); });
+          }
+
           $.ajax({
             type : 'POST',
-            url : "/pages/" + ref_node.attributes['data-node-id'] + '.json',
+            url  : url,
             data : {
                _method : 'put',
                page : { child_ids : child_ids }
@@ -242,6 +256,7 @@
       $.tree.focused().create({ data : "index", attributes : {rel : 'page'}}, -1);
       return false;
     });
+    
     $("#new-section").click(function(){
       $.tree.focused().create({ data : "index", attributes : {rel : ''}}, -1);
       return false;

@@ -4,6 +4,7 @@ class PagesControllerTest < ActionController::TestCase
   should_route :get,  '/pages',                  :controller => :pages, :action => :index
   should_route :post, '/pages',                  :controller => :pages, :action => :create
   should_route :put,  '/pages/1',                :controller => :pages, :action => :update, :id   => '1'
+  should_route :put,  '/pages/reorder',          :controller => :pages, :action => :reorder
   should_route :get,  '/pages/1/edit',           :controller => :pages, :action => :edit,   :id   => '1'
   should_route :get,  '/pages/1',                :controller => :pages, :action => :show,   :id   => '1'
   should_route :get,  '/root/children/children', :controller => :pages, :action => :show,   :path => %w(root children children)
@@ -178,8 +179,25 @@ class PagesControllerTest < ActionController::TestCase
       end
     end
   end
+  
+  context 'put reorder' do
+    context 'reorder children' do
+      setup do
+        @page     = Factory :page
+        @children = (0...5).map{ |i| Factory :page, :position => i }
+        assert_equal (0...5).map, @children.map(&:position)
+        put :reorder, :page => {:child_ids => @children.reverse.map(&:id)}
+      end
+      
+      should 'not be child of other node' do
+        assert_equal (0...5).map{ nil }, Page.find(:all, :conditions => ['id IN (?)', @children.map(&:id)]).map(&:parent_id)
+      end
 
-
+      should 'assign a position to children when passed child_ids' do
+        assert_equal (0...5).map, Page.find(:all, :conditions => ['id IN (?)', @children.map(&:id)]).reverse.map(&:position)
+      end
+    end
+  end
   context 'delete destroy' do
     setup do
       @page = Factory :page

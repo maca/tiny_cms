@@ -93,22 +93,22 @@ class PageTest < Test::Unit::TestCase
   context 'scopes' do
     setup do
       Page.destroy_all
-      @root          = Factory :page
-      @children      = (1..5).map{ Factory :page }
-      @root.children = @children
-      @root.save and @root.reload
+      @roots         = (1..5).map.reverse.map{ Factory :page }
+      @children      = (1..5).map.reverse.map{ Factory :page }
+      @roots.first.children = @children
+      @roots.each{ |root| root.save and root.reload }
     end
 
     should 'getting siblings' do
       assert_equal @children[1..-1], @children.first.siblings
     end
 
-    should 'getting root' do
-      assert_equal [@root], Page.roots
+    should 'getting ordered root' do
+      assert_equal @roots.map(&:id), Page.roots.map(&:id)
     end
   end
 
-  context 'paths and json generation' do
+  context 'json generation' do
     setup do
       Page.destroy_all
       root   = Factory.build :page, :is_page => false
@@ -116,7 +116,28 @@ class PageTest < Test::Unit::TestCase
 
       @pages.inject(root){ |parent, child| parent.children.push(child) and child }
       @pages.unshift root
+      @last          = @pages.last
+      @first         = @pages.first
+      @expected_path = "/#{@pages.map{ |p| p.permalink }.join('/')}" 
+    end
 
+    should 'override to json' do
+      walk = lambda do |node|
+        {:attributes => {'data-node-id' => node.id, :rel => node.is_page ? 'page' : 'section', 'data-path' => node.path, 'data-permalink' => node.permalink}, :data => node.title, :children => node.children.map{ |c| walk.call(c) }}
+      end
+      tree = walk.call @first
+      assert_equal tree.to_json, @first.to_json
+    end
+  end
+  
+  context 'paths' do
+    setup do
+      Page.destroy_all
+      root   = Factory.build :page, :is_page => false
+      @pages = (1..5).map{ |i| Factory.build :page, :is_page => i == 5 }
+
+      @pages.inject(root){ |parent, child| parent.children.push(child) and child }
+      @pages.unshift root
       @last          = @pages.last
       @first         = @pages.first
       @expected_path = "/#{@pages.map{ |p| p.permalink }.join('/')}" 
@@ -137,13 +158,10 @@ class PageTest < Test::Unit::TestCase
       @pages.each &:save
       assert_equal @last, Page.find_by_path(@last.path)
     end
-
-    should 'override to json' do
-      walk = lambda do |node|
-        {:attributes => {'data-node-id' => node.id, :rel => node.is_page ? 'page' : 'section', 'data-path' => node.path, 'data-permalink' => node.permalink}, :data => node.title, :children => node.children.map{ |c| walk.call(c) }}
-      end
-      tree = walk.call @first
-      assert_equal tree.to_json, @first.to_json
+    
+    should 'propagate path saving' do
+      @pages[3].update_attribute :parent_id, nil
+      assert_equal "/#{ @pages[3..-1].map(&:permalink).join('/') }", @pages.last.path
     end
   end
 
@@ -217,5 +235,13 @@ class PageTest < Test::Unit::TestCase
         assert_equal false, page.errors.on(:permalink).blank?
       end
     end
+  end
+
+  context 'Class reorder' do
+    setup do
+      @children = (0...5).map{ |i| Factory :page, :position => i }
+      Page.reorder(@children.map(&:id))
+    end
+    
   end
 end

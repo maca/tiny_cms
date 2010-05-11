@@ -1,15 +1,20 @@
 module Pages
   module Node
     module ClassMethods
-      def order models
-        models.each_with_index{ |model, index| model.update_attribute :order, index }
+      def reorder ids
+        ids.each_with_index{ |id, index| 
+          find(id).update_attributes :position => index, :parent_id => nil #TODO: This is so unefficient
+        }
       end
     end
     
     def self.included model
       model.extend ClassMethods
       
-      model.named_scope :include_tree, :include => {{:children => {:children => {:children => :children}}}, :parent}
+      model.named_scope :include_tree, lambda { |depth|
+        children = :children and 2.upto(depth){ nest = {:children => nest} }
+        {:include => children}
+      }
       model.named_scope :roots,   :conditions => {:parent_id => nil}, :order => 'position'
       model.named_scope :pages,   :conditions => {:is_page   => true}
       
@@ -24,9 +29,9 @@ module Pages
       model.validate :validates_no_children, :if => :is_page
       
       model.before_validation :parameterize_permalink, :generate_path
+      # model.before_save :propagate_path_update
       
       model.send :define_method, :children_with_position= do |array|
-        # array.each_with_index{ |child, index| child.position = index } # Fuck! this works on tests but not in the actual app
         array.each_with_index{ |child, index| child.update_attribute :position, index } # TODO: Shouldn't need to save individually
         self.children_without_position = array
       end
@@ -39,6 +44,19 @@ module Pages
       end
       model.alias_method_chain :children_attributes=, :position
     end
+    
+    # def propagate_path_update root = true
+    #   descendents = 
+    #   if root
+    #     children.include_tree(5)
+    #   else
+    #     self.update_attribute(:path, "#{ parent.generate_path if parent }/#{ permalink }") 
+    #     children
+    #   end
+    #   descendents.each do |child|
+    #     child.propagate_path_update false
+    #   end
+    # end
     
     def rel= rel
       self.is_page = rel == 'page'

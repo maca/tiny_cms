@@ -7,11 +7,12 @@ module Pages
     def index
       respond_to do |format|
         format.html { render 'pages/index' }
-        format.json { render :json => klass.roots }
+        format.json { render :json => klass.include_tree(5).roots }
       end
     end
 
     def show
+      debugger
       set_resource params[:path] ? klass.pages.find_by_path("/#{ params[:path].join('/') }") : klass.find(params[:id])
       raise ActiveRecord::RecordNotFound if resource.nil?
     end
@@ -41,6 +42,11 @@ module Pages
           format.json { render :json => resource.errors, :status => :unprocessable_entity }
         end
       end
+    end
+    
+    def reorder
+      klass.reorder params[:page]['child_ids']
+      head :ok
     end
     
     def destroy
