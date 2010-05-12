@@ -198,6 +198,7 @@ class PagesControllerTest < ActionController::TestCase
       end
     end
   end
+  
   context 'delete destroy' do
     setup do
       @page = Factory :page

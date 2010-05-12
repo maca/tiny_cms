@@ -5,7 +5,16 @@
       autoOpen : false,
       modal    : true
     });
-
+    
+    // Deselect
+    $(document).click(function(event){
+      var nameClicked = $(event.target).parent('a').parent('li[data-node-id]').size() > 0;
+      var iconClicked = $(event.target).parent('li[data-node-id]').size() > 0;
+      if(!nameClicked && !iconClicked){
+        $.tree.focused().deselect_branch($.tree.focused().selected);
+      }
+    });
+    
     $('#pages-tree').tree({
       ui : {
         theme_name : 'apple',
@@ -97,7 +106,7 @@
         "page" : {
           valid_children : "none",
           icon : {
-            image : 'file.png'
+            image : '/stylesheets/apple/file.png'
           }
         }
       },
@@ -141,45 +150,57 @@
           modalDialog.find('.fieldWithError').removeClass('.fieldWithError');
           modalDialog.find('.formError').detach();
           
+          var submitForm = function() {
+            $.extend(page_data, {
+              title     : modalDialog.find('#title').val(),
+              permalink : modalDialog.find('#permalink').val()
+            });
+            
+            $.ajax({
+              async  : false,
+              type   : 'POST',
+              url    : "/pages.json",
+              data   : {
+                _method : "post",
+                page    : page_data
+              },
+              error  : function(response, status) {
+                $('.formError').detach();
+                $.each(jQuery.parseJSON(response.responseText), function(index, value){
+                  modalDialog.find('[for=' + value[0] + ']').addClass('labelWithError');
+                  modalDialog.find('#' + value[0]).addClass('fieldWithError').after('<div class="formError">' + value[1] + '</div>');
+                });
+              },
+              success : function(data, status) {
+                var attrs    = data.attributes;
+                var new_node = $(node);
+
+                new_node.attr('data-node-id',   attrs['data-node-id']);
+                new_node.attr('data-path',      attrs['data-path']);
+                new_node.attr('data-permalink', attrs['data-permalink']);
+
+                new_node.children('a').html('<ins/>' + data.data);
+                
+                valid = true;
+                modalDialog.dialog("close");
+              },
+              dataType : 'json'
+            });
+          };
+          
+          $('#page-creation input').keypress(function (e) {  
+            if ((e.which == 13) || (e.keyCode == 13)) {  
+              submitForm(); 
+              return false;  
+            } else {  
+              return true;  
+            }  
+          });
+          
           // Attach actions to buttons
           modalDialog.dialog( "option", "buttons", 
             { 
-              Ok : function() {
-                $.extend(page_data, {
-                  title     : modalDialog.find('#title').val(),
-                  permalink : modalDialog.find('#permalink').val()
-                });
-                
-                $.ajax({
-                  async  : false,
-                  type   : 'POST',
-                  url    : "/pages.json",
-                  data   : {
-                    _method : "post",
-                    page    : page_data
-                  },
-                  error  : function(response, status) {
-                    $.each(jQuery.parseJSON(response.responseText), function(index, value){
-                      modalDialog.find('[for=' + value[0] + ']').addClass('labelWithError');
-                      modalDialog.find('#' + value[0]).addClass('fieldWithError').after('<div class="formError">' + value[1] + '</div>');
-                    });
-                  },
-                  success : function(data, status) {
-                    var attrs    = data.attributes;
-                    var new_node = $(node);
-
-                    new_node.attr('data-node-id',   attrs['data-node-id']);
-                    new_node.attr('data-path',      attrs['data-path']);
-                    new_node.attr('data-permalink', attrs['data-permalink']);
-
-                    new_node.children('a').html('<ins/>' + data.data);
-                    
-                    valid = true;
-                    modalDialog.dialog("close");
-                  },
-                  dataType : 'json'
-                });
-              },   
+              Ok : submitForm,
               Cancel : function() { 
                 modalDialog.dialog("close");
               } 
@@ -248,17 +269,34 @@
             data : { _method : 'delete' },
             dataType : 'json'
           });
+        },
+      
+        onselect : function(node){
+          if( !($(node).attr('rel') == 'section') )
+            $('input#new-node, input#new-section').attr('disabled', true);
+          $('input#destroy').removeAttr('disabled');
+        },
+        
+        ondeselect : function() {
+          $('input#new-node, input#new-section').removeAttr('disabled');
+          $('input#destroy').attr('disabled', true);
         }
       }
     });
   
     $("#new-node").click(function(){
-      $.tree.focused().create({ data : "index", attributes : {rel : 'page'}}, -1);
+      $.tree.focused().create({ data : "index", attributes : {rel : 'page'}}, $.tree.focused().selected || -1);
       return false;
     });
     
     $("#new-section").click(function(){
-      $.tree.focused().create({ data : "index", attributes : {rel : ''}}, -1);
+      $.tree.focused().create({ data : "index", attributes : {rel : ''}}, $.tree.focused().selected || -1);
+      return false;
+    });
+    
+    $("#destroy").click(function(){
+      if (confirm('¿Seguro?'))
+        $.tree.focused().remove();
       return false;
     });
   });

@@ -60,36 +60,6 @@ class PageTest < Test::Unit::TestCase
     end
   end
 
-  context 'nested attributes for children' do
-    setup do
-      Page.destroy_all
-      @root                     = Factory :page, :is_page => false
-      @children_attributes      = (1..5).map { Factory.attributes_for :page, :is_page => false }
-      @root.children_attributes = @children_attributes
-      @root.save!
-    end
-
-    should 'have 5 children' do
-      assert_equal 5, @root.children.size
-    end
-
-    should 'assign a position to children' do
-      assert_equal (0...5).map, @root.children.map(&:position)
-    end
-
-    should 'allow destroy' do
-      @root.children_attributes = @root.children.map{ |ch| {'id' => ch.id, '_destroy' => true} }
-      @root.save and @root.reload
-      assert_equal 0, @root.children.size
-    end
-
-    should 'change positions using nested attributes' do
-      attrs = @root.children.reverse.map{ |ch| {'id' => ch.id} }
-      @root.children_attributes = attrs
-      assert_equal  attrs.map{ |ch| {'id' => ch[:id], 'position' => ch[:position]} }, @root.children.sort_by(&:position).map{ |ch| {'id' => ch.id, 'position' => ch.position} }
-    end
-  end
-
   context 'scopes' do
     setup do
       Page.destroy_all
@@ -101,6 +71,10 @@ class PageTest < Test::Unit::TestCase
 
     should 'getting siblings' do
       assert_equal @children[1..-1], @children.first.siblings
+    end
+    
+    should 'getting siblings for root' do
+      assert_equal [], @roots.first.siblings
     end
 
     should 'getting ordered root' do
@@ -133,35 +107,68 @@ class PageTest < Test::Unit::TestCase
   context 'paths' do
     setup do
       Page.destroy_all
-      root   = Factory.build :page, :is_page => false
-      @pages = (1..5).map{ |i| Factory.build :page, :is_page => i == 5 }
+      root     = Factory :page, :is_page => false
+      @branch1 = (1..4).map{ |i| Factory :page, :is_page => i == 3 }
+      @branch1.inject(root){ |parent, child| parent.children.push(child) and child }
+      @branch1.unshift root
 
-      @pages.inject(root){ |parent, child| parent.children.push(child) and child }
-      @pages.unshift root
-      @last          = @pages.last
-      @first         = @pages.first
-      @expected_path = "/#{@pages.map{ |p| p.permalink }.join('/')}" 
+      @branch2 = (1..4).map{ |i| Factory :page, :is_page => i == 3 }
+      @branch2.inject(root){ |parent, child| parent.children.push(child) and child }
+      @branch2.unshift root
+    end
+    
+    should 'find by path including parents for one level for first branch' do
+      path = [@branch1.first.permalink]
+      assert_equal @branch1.first, Page.by_path(path).first
+    end
+    
+    should 'find by path including parents for one level for second branch' do
+      path = [@branch2.first.permalink]
+      assert_equal @branch2.first, Page.by_path(path).first
+    end
+    
+    should 'find by path including parents for two levels for first branch' do
+      path = @branch1[0..1].map{ |p| p.permalink }
+      assert_equal @branch1[1], Page.by_path(path).first
+    end
+    
+    should 'find by path including parents for two levels for second branch' do
+      path = @branch2[0..1].map{ |p| p.permalink }
+      assert_equal @branch2[1], Page.by_path(path).first
+    end
+    
+    should 'find by path including parents for three levels' do
+      path = @branch1[0..2].map{ |p| p.permalink }
+      assert_equal @branch1[2], Page.by_path(path).first
+    end
+    
+    should 'find by path including parents for three levels for second branch' do
+      path = @branch2[0..2].map{ |p| p.permalink }
+      assert_equal @branch2[2], Page.by_path(path).first
+    end
+    
+    should 'find by path including parents for four levels' do
+      path = @branch1[0..3].map{ |p| p.permalink }
+      assert_equal @branch1[3], Page.by_path(path).first
+    end
+    
+    should 'find by path including parents for four levels for second branch' do
+      path = @branch2[0..3].map{ |p| p.permalink }
+      assert_equal @branch2[3], Page.by_path(path).first
+    end
+    
+    should 'find by path including parents for five levels' do
+      path = @branch1[0..4].map{ |p| p.permalink }
+      assert_equal @branch1[4], Page.by_path(path).first
+    end
+    
+    should 'find by path including parents for five levels for second branch' do
+      path = @branch2[0..4].map{ |p| p.permalink }
+      assert_equal @branch2[4], Page.by_path(path).first
     end
 
     should 'generate path' do
-      @pages.each{ |p| p.save  }
-      assert_equal @expected_path, @last.dup.generate_path
-    end
-
-    should 'save path' do
-      assert_equal nil, @last.path
-      @pages.each &:save
-      assert_equal @expected_path, @last.path
-    end
-
-    should 'find by path' do
-      @pages.each &:save
-      assert_equal @last, Page.find_by_path(@last.path)
-    end
-    
-    should 'propagate path saving' do
-      @pages[3].update_attribute :parent_id, nil
-      assert_equal "/#{ @pages[3..-1].map(&:permalink).join('/') }", @pages.last.path
+      assert_equal "/#{@branch1.map(&:permalink).join('/')}", @branch1.last.path
     end
   end
 
@@ -180,10 +187,10 @@ class PageTest < Test::Unit::TestCase
       assert_equal 'this-is-teh-title', @page.permalink
     end
 
-    should 'convert to blank if permalink == index' do
-      @page = Factory :page, :permalink => 'index'
-      assert_equal '', @page.permalink
-    end
+    # should 'convert to blank if permalink == index' do
+    #   @page = Factory :page, :permalink => 'index'
+    #   assert_equal '', @page.permalink
+    # end
   end
 
   context 'validation' do
@@ -201,8 +208,9 @@ class PageTest < Test::Unit::TestCase
         @page1 = Factory.build :page, :permalink => 'same'
         @page2 = Factory.build :page, :permalink => 'same'
         @page3 = Factory.build :page, :is_page   => false
-        @page1.save!
-        @page2.generate_path
+        @page1.save(false)
+        @page2.save(false)
+        @page3.save(false)
       end
 
       should  'not allow duplicate if path is the same and both are pages' do
@@ -212,28 +220,31 @@ class PageTest < Test::Unit::TestCase
         assert_equal false, @page2.errors.on(:permalink).blank?
       end
 
-      should 'allow duplicate if path is the same but one is not page' do
-        @page1.update_attribute :is_page, false
-        assert_equal @page1.path,      @page2.path
-        assert_equal @page1.permalink, @page2.permalink
-        @page1.save!
-        assert_equal true, @page2.valid?
-      end
+      # should 'allow duplicate if path is the same but one is not page' do
+      #   @page1.update_attribute :is_page, false
+      #   assert_equal @page1.path,      @page2.path
+      #   assert_equal @page1.permalink, @page2.permalink
+      #   @page1.save!
+      #   assert_equal true, @page2.valid?
+      # end
 
       should 'allow duplicate if paths are diferent and both are pages' do
         @page2.parent = @page3
-        @page2.generate_path
-        assert_not_equal @page1.path,  @page2.path
+        @page1.save(false)
+        @page2.save(false)
+
+        assert_not_equal @page1.path,       @page2.path
+        assert_not_equal @page1.parent_id,  @page2.parent_id
+        
         assert_equal @page1.permalink, @page2.permalink
-        @page1.save!
         assert_equal true, @page2.valid?
       end
 
-      should 'validate presence of permalink if is not page' do
-        page = Factory.build :page, :permalink => '', :is_page => false
-        assert_equal false, page.valid?
-        assert_equal false, page.errors.on(:permalink).blank?
-      end
+      # should 'validate presence of permalink if is not page' do
+      #   page = Factory.build :page, :permalink => '', :is_page => false
+      #   assert_equal false, page.valid?
+      #   assert_equal false, page.errors.on(:permalink).blank?
+      # end
     end
   end
 

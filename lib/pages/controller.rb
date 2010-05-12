@@ -12,8 +12,7 @@ module Pages
     end
 
     def show
-      debugger
-      set_resource params[:path] ? klass.pages.find_by_path("/#{ params[:path].join('/') }") : klass.find(params[:id])
+      set_resource params[:path] ? klass.pages.by_path(params[:path]).first : klass.find(params[:id])
       raise ActiveRecord::RecordNotFound if resource.nil?
     end
     
