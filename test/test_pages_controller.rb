@@ -189,6 +189,8 @@ class PagesControllerTest < ActionController::TestCase
         put :reorder, :page => {:child_ids => @children.reverse.map(&:id)}
       end
       
+      should_respond_with(:success)
+      
       should 'not be child of other node' do
         assert_equal (0...5).map{ nil }, Page.find(:all, :conditions => ['id IN (?)', @children.map(&:id)]).map(&:parent_id)
       end
@@ -196,6 +198,34 @@ class PagesControllerTest < ActionController::TestCase
       should 'assign a position to children when passed child_ids' do
         assert_equal (0...5).map, Page.find(:all, :conditions => ['id IN (?)', @children.map(&:id)]).reverse.map(&:position)
       end
+    end
+    
+    context 'bad attributes' do
+      setup do
+        Page.destroy_all
+        @root  = Factory :page, :permalink => 'root',  :position  => 1, :is_page => false
+        @root2 = Factory :page, :permalink => 'root2', :position  => 2
+        @child = Factory :page, :permalink => 'root',  :parent_id => @root.id,  :position => 1
+        
+        put :reorder, :page => {:child_ids => [@root2.id, @root.id, @child.id]}
+        @root.reload
+        @root2.reload
+        @child.reload
+      end
+      
+      should_respond_with :unprocessable_entity
+      
+      should 'not change nodes' do
+        assert_equal 1,   @root.position
+        assert_equal nil, @root.parent_id
+        
+        assert_equal 2,   @root2.position
+        assert_equal nil, @root2.parent_id
+        
+        assert_equal 1, @child.position
+        assert_equal @root.id, @child.parent_id
+      end
+      
     end
   end
   

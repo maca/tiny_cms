@@ -43,20 +43,47 @@ class PageTest < Test::Unit::TestCase
   end
 
   context 'order with children ids' do
-    setup do
-      Page.destroy_all
-      @root           = Factory :page
-      @children       = (1..5).map{ Factory :page }
-      @root.update_attributes :child_ids => @children.map(&:id)
+    context 'all valid' do
+      setup do
+        Page.destroy_all
+        @root           = Factory :page
+        @children       = (1..5).map{ Factory :page }
+        @root.update_attributes :child_ids => @children.map(&:id)
+      end
+    
+      should 'have 5 children' do
+        @root.children = @children
+        assert_equal 5, @root.children.size
+      end
+    
+      should 'assign a position to children when passed child_ids' do
+        assert_equal (0...5).map, Page.find(:all, :conditions => ['id IN (?)', @root.children.map(&:id)]).map(&:position)
+      end
     end
     
-    should 'have 5 children' do
-      @root.children = @children
-      assert_equal 5, @root.children.size
-    end
-    
-    should 'assign a position to children when passed child_ids' do
-      assert_equal (0...5).map, Page.find(:all, :conditions => ['id IN (?)', @root.children.map(&:id)]).map(&:position)
+    context 'invalid children' do
+      setup do
+        Page.destroy_all
+        @root  = Factory :page, :permalink => 'root',  :position  => 1, :is_page => false
+        @root2 = Factory :page, :permalink => 'child', :position  => 2
+        @child = Factory :page, :permalink => 'child',  :parent_id => @root.id,  :position => 1
+        @root.child_ids = [@root2.id, @child.id]
+        assert_equal false, @root.save
+        @root.reload
+        @root2.reload
+        @child.reload
+      end
+      
+      should 'not change order' do
+        assert_equal 1, @root.position
+        assert_equal nil, @root.parent_id
+        
+        assert_equal 2, @root2.position
+        assert_equal nil, @root2.parent_id
+        
+        assert_equal 1, @child.position
+        assert_equal @root.id, @child.parent_id
+      end
     end
   end
 
@@ -249,10 +276,18 @@ class PageTest < Test::Unit::TestCase
   end
 
   context 'Class reorder' do
-    setup do
-      @children = (0...5).map{ |i| Factory :page, :position => i }
-      Page.reorder(@children.map(&:id))
-    end
+    context 'success' do
+      setup do
+        @children = (0...5).map{ |i| Factory :page, :position => i }
+      end
     
+      should 'return true' do
+        assert_equal true, Page.reorder(@children.map(&:id))
+      end
+      
+      should 'reorder' do
+        assert_equal true, Page.reorder(@children.reverse.map(&:id))
+      end
+    end
   end
 end

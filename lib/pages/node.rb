@@ -1,10 +1,13 @@
 module Pages
   module Node
     module ClassMethods
-      def reorder ids
-        ids.each_with_index{ |id, index| 
-          find(id).update_attributes :position => index, :parent_id => nil #TODO: Too unefficient
-        }
+      def reorder ids, parent_id = nil
+        transaction do
+          ids.each_with_index { |id, index| find(id).update_attributes!(:position => index, :parent_id => parent_id) } #TODO: Unefficient but can live with it
+        end
+        return true
+      rescue
+        false
       end
     end
     
@@ -31,25 +34,16 @@ module Pages
       model.has_many   :children, :class_name => model.to_s, :foreign_key => 'parent_id', :order => 'position', :dependent => :destroy
       
       model.validates_presence_of   :title
-      # model.validates_presence_of   :permalink, :unless => :is_page
       model.validates_uniqueness_of :permalink, :scope  => [:parent_id]
 
       model.validate :validates_no_children, :if => :is_page
+      model.validates_associated :children
 
       model.before_validation :parameterize_permalink
       
       model.send :define_method, :children_with_position= do |array|
-        # table = self.class.to_s.tableize
-        # sql = <<-SQL
-        #   UPDATE "#{table}"
-        #     SET "position" = CASE id
-        #       #{ array.map{ |child| "WHEN #{child.id} THEN #{ array.index(child) }"}.join("\n") }
-        #     END
-        #   WHERE "#{table}"."id" IN (#{ array.map(&:id).join(', ') })
-        # SQL
-        # ActiveRecord::Base.connection.execute sql
-        
-        array.each_with_index{ |child, index| child.update_attribute :position, index } # TODO: Too unefficient
+        # TODO: Too unefficient
+        transaction { array.each_with_index{ |child, index| child.update_attributes! :position => index, :parent_id => id } } rescue nil
         self.children_without_position = array
       end
       model.alias_method_chain :children=, :position

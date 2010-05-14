@@ -44,8 +44,7 @@ module Pages
     end
     
     def reorder
-      klass.reorder params[:page]['child_ids']
-      head :ok
+      klass.reorder(params[:page]['child_ids']) ? head(:ok) : head(:unprocessable_entity)
     end
     
     def destroy

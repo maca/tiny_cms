@@ -37,7 +37,7 @@
               }, 
               
               action  : function (NODE, TREE_OBJ) {
-                TREE_OBJ.create({ data : 'Index', attributes : {rel : 'page'}}, TREE_OBJ.get_node(NODE[0])); 
+                TREE_OBJ.create({ data : 'page', attributes : {rel : 'page'}}, TREE_OBJ.get_node(NODE[0])); 
               }
             },
 
@@ -49,7 +49,7 @@
                 return TREE_OBJ.check("creatable", NODE); 
               }, 
               action  : function (NODE, TREE_OBJ) { 
-                TREE_OBJ.create({ data : 'Nueva sección', attributes : {rel : ''}}, TREE_OBJ.get_node(NODE[0])); 
+                TREE_OBJ.create({ data : 'section', attributes : {rel : ''}}, TREE_OBJ.get_node(NODE[0])); 
               }
             },
             
@@ -157,10 +157,11 @@
             });
             
             $.ajax({
-              async  : false,
-              type   : 'POST',
-              url    : "/pages.json",
-              data   : {
+              // timeout : 3000,
+              async   : false,
+              type    : 'POST',
+              url     : "/pages.json",
+              data    : {
                 _method : "post",
                 page    : page_data
               },
@@ -201,19 +202,20 @@
           modalDialog.dialog( "option", "buttons", 
             { 
               Ok : submitForm,
-              Cancel : function() { 
+              Cancel : function() {
                 modalDialog.dialog("close");
               } 
           });
           
-          modalDialog.bind( "dialogclose", function(event, ui) { 
-            if(!valid) { tree_obj.remove(node); } 
+          modalDialog.bind( "dialogclose", function(event, ui) {
+            if(!valid) 
+              tree_obj.remove(node);
           }).dialog('open');
 
           return true;
         },
         
-        onmove : function(node, ref, type, tree_obj){
+        onmove : function(node, ref, type, tree_obj, rollback){
           var ref_node, children, url, data;
           var child_ids = [];
 
@@ -240,11 +242,15 @@
           }
 
           $.ajax({
+            timeout : 3000,
             type : 'POST',
             url  : url,
             data : {
                _method : 'put',
                page : { child_ids : child_ids }
+            }, 
+            error : function(response, status){
+              $.tree.rollback(rollback);
             },
             dataType : 'json'
           });
@@ -252,23 +258,34 @@
 
         onrename : function(node, tree_obj, rollback){
           $.ajax({
+            timeout : 3000,
             type : 'PUT', 
             url : "/pages/" + $(node).attr('data-node-id') + '.json',
             data : {
                _method : 'put',
                page : { title : tree_obj.get(node).data.title}
             },
+            error : function(){
+              $.tree.rollback(rollback);
+            },
             dataType : 'json'
           });
         },
 
-        ondelete : function(node){
-          $.ajax({
-            type : 'POST',
-            url : "/pages/" + $(node).attr('data-node-id') + '.json',
-            data : { _method : 'delete' },
-            dataType : 'json'
-          });
+        ondelete : function(node, tree_obj, rollback){
+          var id = $(node).attr('data-node-id');
+          if (id) {
+            $.ajax({
+              timeout : 3000,
+              type : 'POST',
+              url : "/pages/" + $(node).attr('data-node-id') + '.json',
+              data : { _method : 'delete' },
+              error : function(){
+                $.tree.rollback(rollback);
+              },
+              dataType : 'json'
+            });
+          }
         },
       
         onselect : function(node){
@@ -285,12 +302,12 @@
     });
   
     $("#new-node").click(function(){
-      $.tree.focused().create({ data : "index", attributes : {rel : 'page'}}, $.tree.focused().selected || -1);
+      $.tree.focused().create({ data : "page", attributes : {rel : 'page'}}, $.tree.focused().selected || -1);
       return false;
     });
     
     $("#new-section").click(function(){
-      $.tree.focused().create({ data : "index", attributes : {rel : ''}}, $.tree.focused().selected || -1);
+      $.tree.focused().create({ data : "section", attributes : {rel : ''}}, $.tree.focused().selected || -1);
       return false;
     });
     
