@@ -1,0 +1,12 @@
+en:
+  pages:
+    actions:
+      new_page: New Page
+      new_section: New Section
+      destroy: Destroy
+      edit: Edit
+      rename: Rename
+    alerts:
+      confirm: Are you sure?
+      duplicate_path: This action would cause two nodes to have the same path (they have the same permalink).
+      

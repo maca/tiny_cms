@@ -11,7 +11,7 @@ begin
     gem.homepage = "http://github.com/maca/pages"
     gem.authors = ["Macario"]
     gem.add_development_dependency "shoulda", ">= 0"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.add_development_dependency "rails", ">= 2.3.5"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

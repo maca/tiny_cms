@@ -1,11 +1,13 @@
+document.write("<script type='text/javascript' src='/javascripts/jquery-tree/jquery.tree.js'></script>");
+document.write("<script type='text/javascript' src='/javascripts/jquery-tree/jquery-tree-plugins/jquery.tree.contextmenu.js'></script>");
+document.write("<script type='text/javascript' src='/javascripts/jquery-ui-dialog.js'></script>");
+document.write("<script type='text/javascript' src='/javascripts/jquery-ui-dialog.js'></script>");
+
+document.write("<link rel='stylesheet' href='/stylesheets/jquery-ui/jquery-ui-1.8.1.custom.css' type='text/css' media='screen' charset='utf-8' />");
+document.write("<link rel='stylesheet' href='/stylesheets/apple/style.css' type='text/css' media='screen' charset='utf-8' />");
 
 (function($){
-  $(function () {
-    $("#page-creation").dialog({
-      autoOpen : false,
-      modal    : true
-    });
-    
+  $.fn.pagesTree = function(opts){
     // Deselect
     $(document).click(function(event){
       var nameClicked = $(event.target).parent('a').parent('li[data-node-id]').size() > 0;
@@ -15,7 +17,7 @@
       }
     });
     
-    $('#pages-tree').tree({
+    this.tree({
       ui : {
         theme_name : 'apple',
         dots : true
@@ -29,60 +31,59 @@
             create : false,
 
             'create-page' : {
-              label   : "Crear página", 
+              label   : opts.translations.actions.new_page, 
               icon    : "create-page",
-              visible : function (NODE, TREE_OBJ) { 
-                if(NODE.length != 1 || NODE.attr('rel') == 'page') return false;
-                  return TREE_OBJ.check("creatable", NODE); 
+              visible : function (node, tree_obj) { 
+                if(node.length != 1 || node.attr('rel') == 'page') return false;
+                  return tree_obj.check("creatable", node); 
               }, 
               
-              action  : function (NODE, TREE_OBJ) {
-                TREE_OBJ.create({ data : 'page', attributes : {rel : 'page'}}, TREE_OBJ.get_node(NODE[0])); 
+              action  : function (node, tree_obj) {
+                tree_obj.create({ data : 'page', attributes : {rel : 'page'}}, tree_obj.get_node(node[0])); 
               }
             },
 
             'create-section' : {
-              label   : "Crear sección", 
+              label   : opts.translations.actions.new_section, 
               icon    : "create-secction",
-              visible : function (NODE, TREE_OBJ) { 
-                if(NODE.length != 1 || NODE.attr('rel') == 'page') return false; 
-                return TREE_OBJ.check("creatable", NODE); 
+              visible : function (node, tree_obj) { 
+                if(node.length != 1 || node.attr('rel') == 'page') return false; 
+                return tree_obj.check("creatable", node); 
               }, 
-              action  : function (NODE, TREE_OBJ) { 
-                TREE_OBJ.create({ data : 'section', attributes : {rel : ''}}, TREE_OBJ.get_node(NODE[0])); 
+              action  : function (node, tree_obj) { 
+                tree_obj.create({ data : 'section', attributes : {rel : ''}}, tree_obj.get_node(node[0])); 
               }
             },
             
             'edit-page' : {
-              label   : "Editar", 
+              label   : opts.translations.actions.edit, 
               icon    : "create-page",
-              visible : function (NODE, TREE_OBJ) { return true; },
-              
-              action  : function (NODE, TREE_OBJ) {
-                window.location="/pages/" + $(NODE[0]).attr('data-node-id') + "/edit";
+              visible : function (node, tree_obj) { return true; },
+              action  : function (node, tree_obj) {
+                window.location = opts.controller + "/" + $(node[0]).attr('data-node-id') + "/edit";
               },
               separator_after : true
             },
 
             'rename-custom'  : {
-              label : "Renombrar", 
+              label : opts.translations.actions.rename, 
               icon  : "rename",
-              visible : function (NODE, TREE_OBJ) { 
-                if(NODE.length != 1) return false;
-                return TREE_OBJ.check("renameable", NODE);
+              visible : function (node, tree_obj) { 
+                if(node.length != 1) return false;
+                return tree_obj.check("renameable", node);
               },
-              action  : function (NODE, TREE_OBJ) { 
-                TREE_OBJ.rename(NODE); 
+              action  : function (node, tree_obj) { 
+                tree_obj.rename(node); 
               }
             },
 
             'remove-custom'  : {
-              label : "Eliminar",
+              label : opts.translations.actions.destroy,
               icon  : "remove",
-              visible : function (NODE, TREE_OBJ) { 
+              visible : function (node, tree_obj) { 
                 var ok = true; 
-                $.each(NODE, function () { 
-                  if(TREE_OBJ.check("deletable", this) == false) {
+                $.each(node, function () { 
+                  if(tree_obj.check("deletable", this) == false) {
                     ok = false; 
                     return false; 
                   }
@@ -90,10 +91,10 @@
                 return ok; 
               },
 
-              action  : function (NODE, TREE_OBJ) { 
-                if (confirm('¿Seguro?')) {
-                  $.each(NODE, function () { 
-                    TREE_OBJ.remove(this); 
+              action  : function (node, tree_obj) { 
+                if (confirm(opts.translations.alerts.confirm)) {
+                  $.each(node, function () { 
+                    tree_obj.remove(this); 
                   });
                 }; 
               } 
@@ -160,7 +161,7 @@
               // timeout : 3000,
               async   : false,
               type    : 'POST',
-              url     : "/pages.json",
+              url     : opts.controller + ".json",
               data    : {
                 _method : "post",
                 page    : page_data
@@ -232,12 +233,12 @@
 
           if (ref_node == -1) {
             children = tree_obj.children(-1);
-            url      = '/pages/reorder.json';
+            url      = opts.controller + '/reorder.json';
             $.each(children, function(index, value){ child_ids.push($(value).attr('data-node-id')); });
           } else {
             ref_node = tree_obj.get(ref_node, 'json', {outer_attrib : ['data-node-id']});
             children = ref_node.children;
-            url      = "/pages/" + ref_node.attributes['data-node-id'] + '.json';
+            url      = opts.controller + "/" + ref_node.attributes['data-node-id'] + '.json';
             $.each(children, function(index, value){ child_ids.push(value.attributes['data-node-id']); });
           }
 
@@ -250,6 +251,8 @@
                page : { child_ids : child_ids }
             }, 
             error : function(response, status){
+              if(response.status == 422)
+                alert(opts.translations.alerts.duplicate_path);
               $.tree.rollback(rollback);
             },
             dataType : 'json'
@@ -260,7 +263,7 @@
           $.ajax({
             timeout : 3000,
             type : 'PUT', 
-            url : "/pages/" + $(node).attr('data-node-id') + '.json',
+            url : opts.controller + "/" + $(node).attr('data-node-id') + '.json',
             data : {
                _method : 'put',
                page : { title : tree_obj.get(node).data.title}
@@ -278,7 +281,7 @@
             $.ajax({
               timeout : 3000,
               type : 'POST',
-              url : "/pages/" + $(node).attr('data-node-id') + '.json',
+              url : opts.controller + "/" + $(node).attr('data-node-id') + '.json',
               data : { _method : 'delete' },
               error : function(){
                 $.tree.rollback(rollback);
@@ -300,21 +303,5 @@
         }
       }
     });
-  
-    $("#new-node").click(function(){
-      $.tree.focused().create({ data : "page", attributes : {rel : 'page'}}, $.tree.focused().selected || -1);
-      return false;
-    });
-    
-    $("#new-section").click(function(){
-      $.tree.focused().create({ data : "section", attributes : {rel : ''}}, $.tree.focused().selected || -1);
-      return false;
-    });
-    
-    $("#destroy").click(function(){
-      if (confirm('¿Seguro?'))
-        $.tree.focused().remove();
-      return false;
-    });
-  });
+  };
 })(jQuery);

@@ -6,7 +6,10 @@ module Pages
     
     def index
       respond_to do |format|
-        format.html { render 'pages/index' }
+        format.html {
+          @class = klass
+          render 'pages/index' 
+        }
         format.json { render :json => klass.include_tree(5).roots }
       end
     end
