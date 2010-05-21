@@ -33,12 +33,14 @@ and tiny_cms.js and some stylesheets to your app's public folder and a locale fi
     
 - If you wan't to customize the views or use a templating language you can copy the views to your app:
 
-   $ script/generate tiny_cms_views
+    $ script/generate tiny_cms_views
    
 - In your application layout or the layout for the resurce you created include jquery and the tiny_cms.js file:
 
-  <%= javascript_include_tag 'jquery-1.4.2.min' %>
-  <%= javascript_include_tag 'tiny_cms' %>
+    <%= javascript_include_tag 'jquery-1.4.2.min' %>
+    <%= javascript_include_tag 'tiny_cms' %>
+    
+- visit /pages of your app
     
 
 == Copyright
