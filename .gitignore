@@ -1,2 +1,4 @@
 .DS_Store
 test/rails_app/db/*.sqlite3
+*.gemspec
+*.gem

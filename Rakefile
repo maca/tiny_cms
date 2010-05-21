@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "tiny_cms"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Minimal CMS Rails Engine or more likelly a "static" pages manager}
+    gem.description = %Q{Minimal CMS Rails Engine or more likelly a "static" pages manager.\nPages can be created, deleted, edited and arranged into sections using a file tree like interface courtesy of jQuery tree (http://jstree.com).\n\nIt attempts to be as minimal, flexible and unobtrusive as posible leaving a lot of functionality like templating languages\nand authentication/authorization for page creation, deletion and editing for the Rails app developer to implement.}
     gem.email = "macarui@gmail.com"
     gem.homepage = "http://github.com/maca/tiny_cms"
     gem.authors = ["Macario"]
