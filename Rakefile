@@ -4,11 +4,11 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "pages"
+    gem.name = "tiny_cms"
     gem.summary = %Q{TODO: one-line summary of your gem}
     gem.description = %Q{TODO: longer description of your gem}
     gem.email = "macarui@gmail.com"
-    gem.homepage = "http://github.com/maca/pages"
+    gem.homepage = "http://github.com/maca/tiny_cms"
     gem.authors = ["Macario"]
     gem.add_development_dependency "shoulda", ">= 0"
     gem.add_development_dependency "rails", ">= 2.3.5"
@@ -47,7 +47,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "pages #{version}"
+  rdoc.title = "tiny_cms #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

@@ -1,17 +1,46 @@
-= pages
+= Tiny CMS
 
-Description goes here.
+Is a minimal CMS Rails Engine or more likelly a "static" pages manager. 
+Pages can be created, deleted, edited and arranged into sections using a file tree like interface courtesy of jQuery tree (http://jstree.com).
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+It attempts to be as minimal, flexible and unobtrusive as posible leaving a lot of functionality like templating languages
+and authentication/authorization for page creation, deletion and editing to the Rails app developer to implement.
+
+== Dependencies 
+
+- jQuery
+- ActiveRecord
+
+== Installation
+
+    $ [sudo] gem install tiny_cms
+
+== Usage
+
+- Configure in your app:
+    config.gem 'tiny_cms'
+
+- Run the tiny_cms_assets generator, this will copy jquery-1.4.1, jquery-tree, a minimal version of jquer-ui 
+and tiny_cms.js and some stylesheets to your app's public folder and a locale file to config/locales:
+
+    $ script/generate tiny_cms_assets
+    
+- Run tiny_cms generator passing a resource name to generate model, controller and migration files and write the routes:
+    
+    $ script/generate tiny_cms page
+    
+- Run the migrations
+    
+- If you wan't to customize the views or use a templating language you can copy the views to your app:
+
+   $ script/generate tiny_cms_views
+   
+- In your application layout or the layout for the resurce you created include jquery and the tiny_cms.js file:
+
+  <%= javascript_include_tag 'jquery-1.4.2.min' %>
+  <%= javascript_include_tag 'tiny_cms' %>
+    
 
 == Copyright
 
-Copyright (c) 2010 Macario. See LICENSE for details.
+Copyright (c) 2010 Macario Ortega. See LICENSE for details.
