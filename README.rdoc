@@ -4,7 +4,7 @@ Is a minimal CMS Rails Engine or more likelly a "static" pages manager.
 Pages can be created, deleted, edited and arranged into sections using a file tree like interface courtesy of jQuery tree (http://jstree.com).
 
 It attempts to be as minimal, flexible and unobtrusive as posible leaving a lot of functionality like templating languages
-and authentication/authorization for page creation, deletion and editing to the Rails app developer to implement.
+and authentication/authorization for page creation, deletion and editing for the Rails app developer to implement.
 
 == Dependencies 
 
