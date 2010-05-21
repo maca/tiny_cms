@@ -20,9 +20,9 @@ and authentication/authorization for page creation, deletion and editing for the
 - Configure in your app:
     config.gem 'tiny_cms'
 
-- Run the tiny_cms_assets generator, this will copy jquery-1.4.1, jquery-tree, a minimal version of jquer-ui 
+- Run the tiny_cms_assets generator, this will copy jquery-1.4.1, jquery-tree, a minimal version of jquery-ui
 and tiny_cms.js and some stylesheets to your app's public folder and a locale file to config/locales:
-
+    
     $ script/generate tiny_cms_assets
     
 - Run tiny_cms generator passing a resource name to generate model, controller and migration files and write the routes:
@@ -32,10 +32,10 @@ and tiny_cms.js and some stylesheets to your app's public folder and a locale fi
 - Run the migrations
     
 - If you wan't to customize the views or use a templating language you can copy the views to your app:
-
+    
     $ script/generate tiny_cms_views
    
-- In your application layout or the layout for the resurce you created include jquery and the tiny_cms.js file:
+- In your application layout or the layout for the resource you created include jquery and the tiny_cms.js file:
 
     <%= javascript_include_tag 'jquery-1.4.2.min' %>
     <%= javascript_include_tag 'tiny_cms' %>
