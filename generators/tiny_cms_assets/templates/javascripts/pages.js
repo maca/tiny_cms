@@ -1,7 +1,6 @@
 document.write("<script type='text/javascript' src='/javascripts/jquery-tree/jquery.tree.js'></script>");
 document.write("<script type='text/javascript' src='/javascripts/jquery-tree/jquery-tree-plugins/jquery.tree.contextmenu.js'></script>");
 document.write("<script type='text/javascript' src='/javascripts/jquery-ui-dialog.js'></script>");
-document.write("<script type='text/javascript' src='/javascripts/jquery-ui-dialog.js'></script>");
 
 document.write("<link rel='stylesheet' href='/stylesheets/jquery-ui/jquery-ui-1.8.1.custom.css' type='text/css' media='screen' charset='utf-8' />");
 document.write("<link rel='stylesheet' href='/stylesheets/apple/style.css' type='text/css' media='screen' charset='utf-8' />");
