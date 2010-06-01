@@ -6,7 +6,7 @@ class TinyCmsAssetsGenerator < Rails::Generator::Base
       
       m.directory "public/javascripts/jquery-tree/jquery-tree-plugins"
 
-      %w(jquery-1.4.2.min.js jquery-ui-dialog.js pages.js).each do |file|
+      %w(jquery-1.4.2.min.js jquery-ui-dialog.js tiny_cms.js).each do |file|
         m.file "javascripts/#{file}", "public/javascripts/#{file}"      
       end
       
