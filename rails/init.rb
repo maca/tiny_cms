@@ -1,1 +1,1 @@
-require 'pages'
+require 'tiny_cms'

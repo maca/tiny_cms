@@ -17,8 +17,7 @@ module TinyCMS
         set_resource klass.find(params[:id]) 
       else
         set_resource klass.by_path(params[:path]).first
-        raise ActiveRecord::RecordNotFound if resource.nil?
-        raise ActiveRecord::RecordNotFound if resource.content.blank?
+        raise ActiveRecord::RecordNotFound if resource.nil? or resource.content.blank?
       end
       render 'tiny_cms/show'
     end

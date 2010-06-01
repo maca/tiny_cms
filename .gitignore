@@ -2,3 +2,4 @@
 test/rails_app/db/*.sqlite3
 *.gemspec
 *.gem
+test/rails_app/log/

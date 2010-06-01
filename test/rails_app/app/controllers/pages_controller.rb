@@ -1,3 +1,2 @@
-class PagesController < ApplicationController
-  include ::Pages::Controller
+class PagesController < TinyCMS::PagesController
 end

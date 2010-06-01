@@ -1,4 +1,3 @@
 class Page < ActiveRecord::Base
-  include Pages::Node
-  
+  include TinyCMS::Node
 end
