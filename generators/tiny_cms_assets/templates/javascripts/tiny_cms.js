@@ -1,4 +1,4 @@
-document.write("<script type='text/javascript' src='/javascripts/jquery-tree/jquery.tree.js'></script>");
+document.write("<script type='text/javascript' src='/javascripts/jquery-tree/jquery.tree.min.js'></script>");
 document.write("<script type='text/javascript' src='/javascripts/jquery-tree/jquery-tree-plugins/jquery.tree.contextmenu.js'></script>");
 document.write("<script type='text/javascript' src='/javascripts/jquery-ui-dialog.js'></script>");
 
