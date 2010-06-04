@@ -5,19 +5,12 @@ module Rails
 
         # Create devise route. Based on route_resources
         def route_tiny_cms resource
-          new_routes = <<-RUBY
-            map.resources :#{resource}, :except => [:new], :collection => {:reorder => :put}
-            map.all '*path', :controller  => :#{resource}, :action => :show
-          RUBY
-          
+          new_routes = "map.resources :#{resource}, :except => [:new], :collection => {:reorder => :put}\n  map.all '*path', :controller  => :#{resource}, :action => :show"
           logger.route new_routes
           
           unless options[:pretend]
             gsub_file 'config/routes.rb', /(end(?:\n|\s)*\Z)/mi do |match|
-              <<-RUBY
-                #{ new_routes }
-              #{ match }
-              RUBY
+              "  #{ new_routes }\nend"
             end
           end
         end
@@ -25,14 +18,11 @@ module Rails
 
       class Destroy < RewindBase
         # Destroy devise route. Based on route_resources
-        def route_devise resource
+        def route_tiny_cms resource
           logger.route "Removing routes for #{resource} resource and catch all route"
-
-          look_for = "\n  map.resources :#{resource}, :except => [:new], :collection => {:reorder => :put}\n"
-          gsub_file 'config/routes.rb', /(#{look_for})/mi, ''
-
-          look_for = "\n  map.resources :#{resource}, :except => [:new], :collection => {:reorder => :put}\n"
-          gsub_file 'config/routes.rb', /#{look_for}/mi, ''
+          
+          new_routes = "  map.resources :#{resource}, :except => [:new], :collection => {:reorder => :put}\n  map.all '*path', :controller  => :#{resource}, :action => :show\n"
+          gsub_file 'config/routes.rb', new_routes, ''
         end
       end
     end

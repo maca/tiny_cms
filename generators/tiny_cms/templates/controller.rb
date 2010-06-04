@@ -1,2 +1,2 @@
-class <%= plural_class_name %>Controller < TinyCMS::PagesController
+class <%= class_name.pluralize %>Controller < TinyCMS::PagesController
 end
