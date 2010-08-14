@@ -21,7 +21,7 @@ class PagesControllerTest < ActionController::TestCase
     context "as json" do
       setup do
         Page.destroy_all
-        Factory :page, :children => [Factory(:page)], :is_page => false
+        Factory :page, :children => [Factory(:page)]
         get :index, :format => 'json'
       end
 
@@ -56,7 +56,7 @@ class PagesControllerTest < ActionController::TestCase
     end
 
     # should 'raise active record not found when node is not a page' do
-    #   @page.update_attribute :is_page, false
+    #   @page.update_attribute
     #   assert_raises ActiveRecord::RecordNotFound do
     #     get :show, :path => @page.path.scan(/\w+/)
     #   end
@@ -203,7 +203,7 @@ class PagesControllerTest < ActionController::TestCase
     context 'bad attributes' do
       setup do
         Page.destroy_all
-        @root  = Factory :page, :permalink => 'root',  :position  => 1, :is_page => false
+        @root  = Factory :page, :permalink => 'root',  :position  => 1
         @root2 = Factory :page, :permalink => 'root2', :position  => 2
         @child = Factory :page, :permalink => 'root',  :parent_id => @root.id,  :position => 1
         

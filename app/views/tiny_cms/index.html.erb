@@ -1,6 +1,5 @@
 <div id='pages-tree'></div>
 <input type='button' id='new-node' value='<%= I18n.t 'pages.actions.new_page' %>' />
-<input type='button' id='new-section' value='<%= I18n.t 'pages.actions.new_section' %>' />
 <input type='button' id='destroy' value='<%= I18n.t 'pages.actions.destroy' %>' />
 
 <form id='page-creation' title='<%= I18n.t 'pages.actions.new_page' %>' style='display:none'>
@@ -10,11 +9,14 @@
   <input type='text' name='permalink' id='permalink' class='text ui-widget-content ui-corner-all' />
 </form>
 
+
 <script type='text/javascript' charset='utf-8'>
   jQuery(function(){
+    var translations = <%= I18n.t('pages', :default => {:actions => {}, :alerts => {}}).to_json %>
+    
     jQuery("#pages-tree").pagesTree({
       controller : "<%= url_for :controller => params[:controller] %>",
-      translations : <%= I18n.t('pages', :default => {:actions => {}, :alerts => {}}).to_json %>
+      translations : translations
     });
     
     jQuery("#page-creation").dialog({
@@ -23,17 +25,12 @@
     });
     
     jQuery("#new-node").click(function(){
-      jQuery.tree.focused().create({ data : "page", attributes : {rel : 'page'}}, jQuery.tree.focused().selected || -1);
-      return false;
-    });
-    
-    jQuery("#new-section").click(function(){
-      jQuery.tree.focused().create({ data : "section", attributes : {rel : ''}}, jQuery.tree.focused().selected || -1);
+      jQuery.tree.focused().create({ data : "page"}, jQuery.tree.focused().selected || -1);
       return false;
     });
     
     jQuery("#destroy").click(function(){
-      if (confirm(opts.translations.actions.confirm))
+      if (confirm(translations.alerts.confirm))
         jQuery.tree.focused().remove();
       return false;
     });

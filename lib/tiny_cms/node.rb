@@ -28,7 +28,6 @@ module TinyCMS
       }
       
       model.named_scope :roots,   :conditions => {:parent_id => nil}, :order => 'position'
-      model.named_scope :pages,   :conditions => {:is_page   => true}
       
       model.belongs_to :parent,   :class_name => model.to_s, :foreign_key => 'parent_id'
       model.has_many   :children, :class_name => model.to_s, :foreign_key => 'parent_id', :order => 'position', :dependent => :destroy
@@ -36,10 +35,11 @@ module TinyCMS
       model.validates_presence_of   :title
       model.validates_uniqueness_of :permalink, :scope  => [:parent_id]
 
-      model.validate :validates_no_children, :if => :is_page
       model.validates_associated :children
 
       model.before_validation :parameterize_permalink
+      
+      model.send :attr_accessor, :rel # Does nothing but jstree sends attribute
       
       model.send :define_method, :children_with_position= do |array|
         # TODO: Too unefficient
@@ -47,10 +47,6 @@ module TinyCMS
         self.children_without_position = array
       end
       model.alias_method_chain :children=, :position
-    end
-
-    def rel= rel
-      self.is_page = rel == 'page'
     end
   
     def siblings
@@ -68,16 +64,11 @@ module TinyCMS
     end
     
     def to_hash
-      {:attributes => {'data-node-id' => id, :rel => is_page ? 'page' : 'section', 'data-permalink' => permalink, 'data-path' => path}, :data => title, :children => children.map{ |c| c.to_hash } }
+      {:attributes => {'data-node-id' => id, 'data-permalink' => permalink, 'data-path' => path}, :data => title, :children => children.map{ |c| c.to_hash } }
     end
     
     def to_json opts = {}
       self.to_hash.to_json
-    end
-    
-    private
-    def validates_no_children
-      errors.add(:base, "A page cannot have children") unless children.blank? # Todo: localize
     end
   end
 end

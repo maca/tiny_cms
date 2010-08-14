@@ -9,14 +9,9 @@ require 'rubygems'
 require 'test/unit'
 require 'shoulda'
 require 'factory_girl'
-
 require 'support/page_migration'
 
 Factory.define :page do |p|
   p.sequence(:title) { |i| "Node #{i}"}
   p.sequence(:permalink) { |i| "node_#{i}"}
-  p.is_page true
-end
-
-class Test::Unit::TestCase
 end

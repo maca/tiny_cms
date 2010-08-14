@@ -41,7 +41,7 @@ module TinyCMS
       respond_to do |format|
         if resource.update_attributes params[resource_name]
           format.html { redirect_to resource }
-          format.json { head :ok }
+          format.json { render :json => {} }
         else
           format.html { render 'tiny_cms/edit' }
           format.json { render :json => resource.errors, :status => :unprocessable_entity }
@@ -50,7 +50,11 @@ module TinyCMS
     end
     
     def reorder
-      klass.reorder(params[:page]['child_ids']) ? head(:ok) : head(:unprocessable_entity)
+      if klass.reorder params[:page]['child_ids']
+        render :json => {}
+      else
+        render :json => {}, :status => :unprocessable_entity
+      end
     end
     
     def destroy
@@ -59,7 +63,7 @@ module TinyCMS
       
       respond_to do |format|
         format.html { redirect_to :controller => params[:controller], :action => 'index'}
-        format.json { head :ok }
+        format.json { render :json => {} }
       end
     end
     

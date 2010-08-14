@@ -33,24 +33,12 @@ document.write("<link rel='stylesheet' href='/stylesheets/apple/style.css' type=
               label   : opts.translations.actions.new_page, 
               icon    : "create-page",
               visible : function (node, tree_obj) { 
-                if(node.length != 1 || node.attr('rel') == 'page') return false;
+                if(node.length != 1) return false;
                   return tree_obj.check("creatable", node); 
               }, 
               
               action  : function (node, tree_obj) {
-                tree_obj.create({ data : 'page', attributes : {rel : 'page'}}, tree_obj.get_node(node[0])); 
-              }
-            },
-
-            'create-section' : {
-              label   : opts.translations.actions.new_section, 
-              icon    : "create-secction",
-              visible : function (node, tree_obj) { 
-                if(node.length != 1 || node.attr('rel') == 'page') return false; 
-                return tree_obj.check("creatable", node); 
-              }, 
-              action  : function (node, tree_obj) { 
-                tree_obj.create({ data : 'section', attributes : {rel : ''}}, tree_obj.get_node(node[0])); 
+                tree_obj.create({data : 'page'}, tree_obj.get_node(node[0])); 
               }
             },
             
@@ -82,7 +70,7 @@ document.write("<link rel='stylesheet' href='/stylesheets/apple/style.css' type=
               visible : function (node, tree_obj) { 
                 var ok = true; 
                 $.each(node, function () { 
-                  if(tree_obj.check("deletable", this) == false) {
+                  if(tree_obj.check("deletable", this) === false) {
                     ok = false; 
                     return false; 
                   }
@@ -95,18 +83,9 @@ document.write("<link rel='stylesheet' href='/stylesheets/apple/style.css' type=
                   $.each(node, function () { 
                     tree_obj.remove(this); 
                   });
-                }; 
+                }
               } 
             }
-          }
-        }
-      },
-
-      types : {
-        "page" : {
-          valid_children : "none",
-          icon : {
-            image : '/stylesheets/apple/file.png'
           }
         }
       },
@@ -133,14 +112,15 @@ document.write("<link rel='stylesheet' href='/stylesheets/apple/style.css' type=
             case 'inside':
             ref_node = $(ref);
             break;
-          };
+          }
                     
           var created_node = tree_obj.get(node);
           var page_data    = created_node.data;
           $.extend(page_data, created_node.attributes);
           
-          if (ref_node != -1)
+          if (ref_node != -1) {
             $.extend(page_data, {parent_id : ref_node.attr('data-node-id')});
+          }
 
           modalDialog = $('#page-creation');
           
@@ -208,8 +188,9 @@ document.write("<link rel='stylesheet' href='/stylesheets/apple/style.css' type=
           });
           
           modalDialog.bind( "dialogclose", function(event, ui) {
-            if(!valid) 
+            if(!valid) {
               tree_obj.remove(node);
+            }
           }).dialog('open');
 
           return true;
@@ -218,7 +199,7 @@ document.write("<link rel='stylesheet' href='/stylesheets/apple/style.css' type=
         onmove : function(node, ref, type, tree_obj, rollback){
           var ref_node, children, url, data;
           var child_ids = [];
-
+          
           switch(type)
           {
             case 'before':
@@ -228,7 +209,7 @@ document.write("<link rel='stylesheet' href='/stylesheets/apple/style.css' type=
             case 'inside':
             ref_node = tree_obj.parent(node);
             break;
-          };
+          }
 
           if (ref_node == -1) {
             children = tree_obj.children(-1);
@@ -240,7 +221,7 @@ document.write("<link rel='stylesheet' href='/stylesheets/apple/style.css' type=
             url      = opts.controller + "/" + ref_node.attributes['data-node-id'] + '.json';
             $.each(children, function(index, value){ child_ids.push(value.attributes['data-node-id']); });
           }
-
+          
           $.ajax({
             timeout : 3000,
             type : 'POST',
@@ -250,8 +231,9 @@ document.write("<link rel='stylesheet' href='/stylesheets/apple/style.css' type=
                page : { child_ids : child_ids }
             }, 
             error : function(response, status){
-              if(response.status == 422)
+              if(response.status == 422) {
                 alert(opts.translations.alerts.duplicate_path);
+              }
               $.tree.rollback(rollback);
             },
             dataType : 'json'
@@ -291,8 +273,6 @@ document.write("<link rel='stylesheet' href='/stylesheets/apple/style.css' type=
         },
       
         onselect : function(node){
-          if( !($(node).attr('rel') == 'section') )
-            $('input#new-node, input#new-section').attr('disabled', true);
           $('input#destroy').removeAttr('disabled');
         },
         

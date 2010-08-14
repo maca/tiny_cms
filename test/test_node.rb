@@ -3,13 +3,6 @@ require 'helper'
 class PageTest < Test::Unit::TestCase
   should_belong_to :parent
   should_have_many :children
-  
-  context 'attributes' do
-    setup { @page = Factory :page, :rel => 'page' }
-    should 'set is_page' do
-      assert @page.is_page
-    end
-  end
 
   context 'children have positions' do
     setup do
@@ -64,7 +57,7 @@ class PageTest < Test::Unit::TestCase
     context 'invalid children' do
       setup do
         Page.destroy_all
-        @root  = Factory :page, :permalink => 'root',  :position  => 1, :is_page => false
+        @root  = Factory :page, :permalink => 'root',  :position  => 1
         @root2 = Factory :page, :permalink => 'child', :position  => 2
         @child = Factory :page, :permalink => 'child',  :parent_id => @root.id,  :position => 1
         @root.child_ids = [@root2.id, @child.id]
@@ -112,8 +105,8 @@ class PageTest < Test::Unit::TestCase
   context 'json generation' do
     setup do
       Page.destroy_all
-      root   = Factory.build :page, :is_page => false
-      @pages = (1..5).map{ |i| Factory.build :page, :is_page => i == 5 }
+      root   = Factory.build :page
+      @pages = (1..5).map{ |i| Factory.build :page }
 
       @pages.inject(root){ |parent, child| parent.children.push(child) and child }
       @pages.unshift root
@@ -124,7 +117,7 @@ class PageTest < Test::Unit::TestCase
 
     should 'override to json' do
       walk = lambda do |node|
-        {:attributes => {'data-node-id' => node.id, :rel => node.is_page ? 'page' : 'section', 'data-path' => node.path, 'data-permalink' => node.permalink}, :data => node.title, :children => node.children.map{ |c| walk.call(c) }}
+        {:attributes => {'data-node-id' => node.id, 'data-path' => node.path, 'data-permalink' => node.permalink}, :data => node.title, :children => node.children.map{ |c| walk.call(c) }}
       end
       tree = walk.call @first
       assert_equal tree.to_json, @first.to_json
@@ -134,12 +127,12 @@ class PageTest < Test::Unit::TestCase
   context 'paths' do
     setup do
       Page.destroy_all
-      root     = Factory :page, :is_page => false
-      @branch1 = (1..4).map{ |i| Factory :page, :is_page => i == 3 }
+      root     = Factory :page
+      @branch1 = (1..4).map{ |i| Factory :page}
       @branch1.inject(root){ |parent, child| parent.children.push(child) and child }
       @branch1.unshift root
 
-      @branch2 = (1..4).map{ |i| Factory :page, :is_page => i == 3 }
+      @branch2 = (1..4).map{ |i| Factory :page}
       @branch2.inject(root){ |parent, child| parent.children.push(child) and child }
       @branch2.unshift root
     end
@@ -223,18 +216,12 @@ class PageTest < Test::Unit::TestCase
   context 'validation' do
     should_validate_presence_of :title
 
-    should 'not allow children if is page' do
-      page = Factory.build :page, :is_page => true, :children => [Factory(:page)]
-      assert_equal false, page.valid?
-      assert_equal false, page.errors.on(:base).blank?
-    end
-
     context 'permalink uniqueness' do
       setup do
         Page.destroy_all
         @page1 = Factory.build :page, :permalink => 'same'
         @page2 = Factory.build :page, :permalink => 'same'
-        @page3 = Factory.build :page, :is_page   => false
+        @page3 = Factory.build :page
         @page1.save(false)
         @page2.save(false)
         @page3.save(false)
@@ -248,7 +235,7 @@ class PageTest < Test::Unit::TestCase
       end
 
       # should 'allow duplicate if path is the same but one is not page' do
-      #   @page1.update_attribute :is_page, false
+      #   @page1.update_attribute
       #   assert_equal @page1.path,      @page2.path
       #   assert_equal @page1.permalink, @page2.permalink
       #   @page1.save!
@@ -268,7 +255,7 @@ class PageTest < Test::Unit::TestCase
       end
 
       # should 'validate presence of permalink if is not page' do
-      #   page = Factory.build :page, :permalink => '', :is_page => false
+      #   page = Factory.build :page, :permalink => ''
       #   assert_equal false, page.valid?
       #   assert_equal false, page.errors.on(:permalink).blank?
       # end

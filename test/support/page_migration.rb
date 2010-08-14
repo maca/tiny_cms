@@ -11,7 +11,6 @@ ActiveRecord::Schema.define(:version => 1) do
     t.integer  :position
     t.string   :title
     t.string   :content
-    t.boolean  :is_page
 
     t.timestamps
   end
