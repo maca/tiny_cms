@@ -29,6 +29,10 @@ module TinyCMS
       
       model.named_scope :roots,   :conditions => {:parent_id => nil}, :order => 'position'
       
+      model.named_scope :by_parent_id, lambda { |parent_id|
+        {:conditions => {:parent_id => parent_id}}
+      }
+      
       model.belongs_to :parent,   :class_name => model.to_s, :foreign_key => 'parent_id'
       model.has_many   :children, :class_name => model.to_s, :foreign_key => 'parent_id', :order => 'position', :dependent => :destroy
       
@@ -48,12 +52,7 @@ module TinyCMS
       end
       model.alias_method_chain :children=, :position
     end
-  
-    def siblings
-      return [] unless parent_id
-      self.class.include_tree(1).find(:first, :conditions => "id = #{parent_id}").children.find(:all, :conditions => "id != #{id}")
-    end
-    
+   
     def parameterize_permalink
       text = permalink.blank? ? title : permalink
       self.permalink = text.parameterize if text
@@ -65,6 +64,10 @@ module TinyCMS
     
     def to_hash
       {:attributes => {'data-node-id' => id, 'data-permalink' => permalink, 'data-path' => path}, :data => title, :children => children.map{ |c| c.to_hash } }
+    end
+    
+    def siblings
+      self.class.by_parent_id(parent_id).find(:all, :conditions => "id != #{id}")
     end
     
     def to_json opts = {}

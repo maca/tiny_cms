@@ -94,7 +94,7 @@ class PageTest < Test::Unit::TestCase
     end
     
     should 'getting siblings for root' do
-      assert_equal [], @roots.first.siblings
+      assert_equal @roots - [@roots.first], @roots.first.siblings
     end
 
     should 'getting ordered root' do
@@ -206,11 +206,6 @@ class PageTest < Test::Unit::TestCase
       @page = Factory :page, :title => 'This is teh title', :permalink => nil
       assert_equal 'this-is-teh-title', @page.permalink
     end
-
-    # should 'convert to blank if permalink == index' do
-    #   @page = Factory :page, :permalink => 'index'
-    #   assert_equal '', @page.permalink
-    # end
   end
 
   context 'validation' do
@@ -234,14 +229,6 @@ class PageTest < Test::Unit::TestCase
         assert_equal false, @page2.errors.on(:permalink).blank?
       end
 
-      # should 'allow duplicate if path is the same but one is not page' do
-      #   @page1.update_attribute
-      #   assert_equal @page1.path,      @page2.path
-      #   assert_equal @page1.permalink, @page2.permalink
-      #   @page1.save!
-      #   assert_equal true, @page2.valid?
-      # end
-
       should 'allow duplicate if paths are diferent and both are pages' do
         @page2.parent = @page3
         @page1.save(false)
@@ -253,12 +240,6 @@ class PageTest < Test::Unit::TestCase
         assert_equal @page1.permalink, @page2.permalink
         assert_equal true, @page2.valid?
       end
-
-      # should 'validate presence of permalink if is not page' do
-      #   page = Factory.build :page, :permalink => ''
-      #   assert_equal false, page.valid?
-      #   assert_equal false, page.errors.on(:permalink).blank?
-      # end
     end
   end
 
