@@ -67,7 +67,11 @@ module TinyCMS
     end
     
     def siblings
-      self.class.by_parent_id(parent_id).find(:all, :conditions => "id != #{id}")
+      section.find :all, :conditions => "id != #{id}"
+    end
+    
+    def section
+      self.class.by_parent_id parent_id
     end
     
     def to_json opts = {}

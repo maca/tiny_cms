@@ -94,11 +94,15 @@ class PageTest < Test::Unit::TestCase
     end
     
     should 'getting siblings for root' do
-      assert_equal @roots - [@roots.first], @roots.first.siblings
+      assert_equal @roots[1..-1], @roots.first.siblings
     end
 
     should 'getting ordered root' do
       assert_equal @roots.map(&:id), Page.roots.map(&:id)
+    end
+    
+    should 'getting section' do
+      assert_equal @children, @children.first.section
     end
   end
 
