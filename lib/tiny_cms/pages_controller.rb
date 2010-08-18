@@ -1,5 +1,6 @@
 module TinyCMS
   class PagesController < ApplicationController
+    unloadable
     helper_method :resource
     
     def index
