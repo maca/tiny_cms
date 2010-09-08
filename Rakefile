@@ -10,8 +10,9 @@ begin
     gem.email = "macarui@gmail.com"
     gem.homepage = "http://github.com/maca/tiny_cms"
     gem.authors = ["Macario"]
-    gem.add_development_dependency "shoulda", ">= 0"
+    gem.add_development_dependency "shoulda", ">= 2.11.1"
     gem.add_development_dependency "rails", ">= 2.3.5"
+    gem.add_development_dependency "factory_girl", ">= 1.3.1"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

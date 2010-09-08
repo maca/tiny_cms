@@ -33,6 +33,8 @@ module TinyCMS
         {:conditions => {:parent_id => parent_id}}
       }
       
+      model.named_scope :exclude_by_id, lambda { |id| {:conditions => "id != #{id}"} }
+      
       model.belongs_to :parent,   :class_name => model.to_s, :foreign_key => 'parent_id'
       model.has_many   :children, :class_name => model.to_s, :foreign_key => 'parent_id', :order => 'position', :dependent => :destroy
       
@@ -67,7 +69,7 @@ module TinyCMS
     end
     
     def siblings
-      section.find :all, :conditions => "id != #{id}"
+      section.exclude_by_id self.id
     end
     
     def section
