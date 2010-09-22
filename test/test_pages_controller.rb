@@ -8,6 +8,10 @@ class PagesControllerTest < ActionController::TestCase
   should_route :get,  '/pages/1/edit',           :controller => :pages, :action => :edit,   :id   => '1'
   should_route :get,  '/pages/1',                :controller => :pages, :action => :show,   :id   => '1'
   should_route :get,  '/root/children/children', :controller => :pages, :action => :show,   :path => %w(root children children)
+  
+  setup do
+    Page.destroy_all
+  end
 
   context 'get index' do
     context "as html" do

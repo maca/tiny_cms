@@ -5,10 +5,10 @@ module TinyCMS
     
     def index
       respond_to do |format|
-        format.html {
+        format.html do
           @class = klass
           render 'tiny_cms/index' 
-        }
+        end
         format.json { render :json => klass.include_tree(5).roots }
       end
     end
