@@ -54,11 +54,12 @@ module TinyCMS
       end
       model.alias_method_chain :children=, :position
 
-      # dynamic routing
-      model.before_save   :update_dynamic_route!
-      model.after_destroy :remove_dynamic_route!
-
-      model.find(:all, "dynamic_route IS NOT nil").each(&:update_dynamic_route!)
+      if model.columns.find { |c| c.name == 'dynamic_route' }
+        # dynamic routing
+        model.before_save   :update_dynamic_route!
+        model.after_destroy :remove_dynamic_route!
+        model.find(:all, "dynamic_route IS NOT nil").each(&:update_dynamic_route!)
+      end
     end
 
     @@uuid = UUID.new
