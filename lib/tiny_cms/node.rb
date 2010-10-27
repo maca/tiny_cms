@@ -53,8 +53,16 @@ module TinyCMS
         self.children_without_position = array
       end
       model.alias_method_chain :children=, :position
+
+      # dynamic routing
+      model.before_save   :update_dynamic_route!
+      model.after_destroy :remove_dynamic_route!
+
+      model.find(:all, "dynamic_route IS NOT nil").each(&:update_dynamic_route!)
     end
-   
+
+    @@uuid = UUID.new
+
     def parameterize_permalink
       text = permalink.blank? ? title : permalink
       self.permalink = text.parameterize if text
@@ -78,6 +86,23 @@ module TinyCMS
     
     def to_json opts = {}
       self.to_hash.to_json
+    end
+
+    # Dynamic routing
+    def add_dynamic_route!
+      controller, action = dynamic_route.split('#')
+      self.dynamic_route_uuid = @@uuid.generate
+      new_route = ActionController::Routing::Routes.builder.build(permalink, {:controller => controller, :action => action, :dynamic_route_uuid => dynamic_route_uuid})
+      ActionController::Routing::Routes.routes.unshift new_route
+    end
+
+    def remove_dynamic_route!
+      ActionController::Routing::Routes.routes.reject! { |r| r.instance_variable_get(:@requirements)[:dynamic_route_uuid] == dynamic_route_uuid } unless dynamic_route_uuid.blank?
+    end
+
+    def update_dynamic_route!
+      remove_dynamic_route!
+      add_dynamic_route! unless dynamic_route.blank?
     end
   end
 end

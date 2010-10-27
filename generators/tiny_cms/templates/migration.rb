@@ -6,6 +6,7 @@ class TinyCmsCreate<%= table_name.camelize %> < ActiveRecord::Migration
       t.integer  :position
       t.string   :title
       t.string   :content
+      t.string   :route_to
       
       t.timestamps
     end

@@ -11,7 +11,8 @@ ActiveRecord::Schema.define(:version => 1) do
     t.integer  :position
     t.string   :title
     t.string   :content
-
+    t.string   :dynamic_route
+    t.string   :dynamic_route_uuid
     t.timestamps
   end
 end

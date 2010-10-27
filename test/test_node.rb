@@ -1,6 +1,8 @@
 require 'helper'
 
 class PageTest < Test::Unit::TestCase
+  include ActionController::Assertions::RoutingAssertions
+
   should_belong_to :parent
   should_have_many :children
 
@@ -259,6 +261,35 @@ class PageTest < Test::Unit::TestCase
       
       should 'reorder' do
         assert_equal true, Page.reorder(@children.reverse.map(&:id))
+      end
+    end
+  end
+
+  context 'Dynamic routing' do
+    setup do
+      @page = Factory :page, :dynamic_route => "dummy#index"
+    end
+
+    should 'generate route' do
+      assert_routing @page.path, :controller => 'dummy', :action => 'index', :dynamic_route_uuid => @page.dynamic_route_uuid
+    end
+
+    should 'remove route on destroy' do
+      @page.destroy
+      assert_equal 0, ActionController::Routing::Routes.routes.select{ |route| route.segments.inject(""){|str,s| str << s.to_s} == "#{@page.path}/" }.size
+    end
+
+    context 'changing route' do
+      setup do
+        @page.update_attributes :dynamic_route => "dummy#other"
+      end
+
+      should 'generate route' do
+        assert_routing @page.path, :controller => 'dummy', :action => 'other', :dynamic_route_uuid => @page.dynamic_route_uuid
+      end
+
+      should 'should remove previous route' do
+        assert_equal 1, ActionController::Routing::Routes.routes.select{ |route| route.segments.inject(""){|str,s| str << s.to_s} == "#{@page.path}/" }.size
       end
     end
   end

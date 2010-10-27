@@ -9,4 +9,3 @@ en:
     alerts:
       confirm: Are you sure?
       duplicate_path: This action would cause two nodes to have the same path (they have the same permalink).
-      

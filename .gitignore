@@ -4,3 +4,4 @@ test/rails_app/db/*.sqlite3
 *.gem
 test/rails_app/log/
 *.swp
+*.swo
