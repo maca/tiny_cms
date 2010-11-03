@@ -91,12 +91,12 @@ module TinyCMS
 
     # Dynamic routing
     def add_dynamic_route!
-      controller, action = dynamic_route.split('#')
+      controller, action      = dynamic_route.split('#')
       self.dynamic_route_uuid = @@uuid.generate
-      action, params = action.split('?') 
-      route = {:controller => controller, :action => action, :dynamic_route_uuid => dynamic_route_uuid}#.merge(params)
+      action, params          = action.split('?') 
+      route                   = {:controller => controller, :action => action, :dynamic_route_uuid => dynamic_route_uuid}
       route.merge! Rack::Utils.parse_query(params) if params
-      new_route = ActionController::Routing::Routes.builder.build(permalink, route)
+      new_route = ActionController::Routing::Routes.builder.build(path, route)
       ActionController::Routing::Routes.routes.unshift new_route
     end
 

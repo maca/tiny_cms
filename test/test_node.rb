@@ -267,7 +267,7 @@ class PageTest < Test::Unit::TestCase
 
   context 'Dynamic routing' do
     setup do
-      @page = Factory :page, :dynamic_route => "dummy#index"
+      @page = Factory :page, :parent => Factory(:page),:dynamic_route => "dummy#index"
     end
 
     should 'generate route' do
