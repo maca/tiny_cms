@@ -274,6 +274,11 @@ class PageTest < Test::Unit::TestCase
       assert_routing @page.path, :controller => 'dummy', :action => 'index', :dynamic_route_uuid => @page.dynamic_route_uuid
     end
 
+    should 'generate route with params' do
+      @page = Factory :page, :dynamic_route => "dummy#index?one=1&two=2"
+      assert_recognizes({:controller => 'dummy', :action => 'index', :dynamic_route_uuid => @page.dynamic_route_uuid, :one => '1', :two => '2'}, @page.path) 
+    end
+
     should 'remove route on destroy' do
       @page.destroy
       assert_equal 0, ActionController::Routing::Routes.routes.select{ |route| route.segments.inject(""){|str,s| str << s.to_s} == "#{@page.path}/" }.size
@@ -288,6 +293,9 @@ class PageTest < Test::Unit::TestCase
         assert_routing @page.path, :controller => 'dummy', :action => 'other', :dynamic_route_uuid => @page.dynamic_route_uuid
       end
 
+      should 'generate route' do
+        assert_routing @page.path, :controller => 'dummy', :action => 'other', :dynamic_route_uuid => @page.dynamic_route_uuid
+      end
       should 'should remove previous route' do
         assert_equal 1, ActionController::Routing::Routes.routes.select{ |route| route.segments.inject(""){|str,s| str << s.to_s} == "#{@page.path}/" }.size
       end
